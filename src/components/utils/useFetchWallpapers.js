@@ -1,5 +1,4 @@
 import useFetch from './useFetch';
-import * as path from 'path';
 
 export default function useFetchWallpaper() {
     const { fetch } = useFetch();
@@ -11,7 +10,7 @@ export default function useFetchWallpaper() {
     };
 
     async function searchWallpapers() {
-        const url = path.join('/search?apikey=' + config.wallpapers.apiKey);
+        const url = '/search?apikey=' + config.wallpapers.apiKey + '&resolutions=' + screen.width + 'x' + screen.height;
         console.log(url);
         return await fetch(url).then(res => res.json());
     }

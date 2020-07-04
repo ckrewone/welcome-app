@@ -1,9 +1,9 @@
 <template>
     <div class="wallpaper">
-        <div class="btn btn-primary wallpaper__button"
+        <div class="btn btn-primary wallpaper__button rounded shadow"
              @click="reload"
-        >Reload wallpaper</div>
-        <img :src="wallpaper"/>
+        ><i class="gg-redo"></i></div>
+        <img class="wallpaper" :src="wallpaper"/>
         <div
                 class="loader"
                 :class="loader ? 'loader--show' : 'loader--hide'"
@@ -16,7 +16,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;" xml:space="preserve"><path d="M85.5,42c-0.2-0.8-0.5-1.7-0.8-2.5c-0.3-0.9-0.7-1.6-1-2.3c-0.3-0.7-0.6-1.3-1-1.9c0.3,0.5,0.5,1.1,0.8,1.7  c0.2,0.7,0.6,1.5,0.8,2.3s0.5,1.7,0.8,2.5c0.8,3.5,1.3,7.5,0.8,12c-0.4,4.3-1.8,9-4.2,13.4c-2.4,4.2-5.9,8.2-10.5,11.2  c-1.1,0.7-2.2,1.5-3.4,2c-0.5,0.2-1.2,0.6-1.8,0.8s-1.3,0.5-1.9,0.8c-2.6,1-5.3,1.7-8.1,1.8l-1.1,0.1L53.8,84c-0.7,0-1.4,0-2.1,0  c-1.4-0.1-2.9-0.1-4.2-0.5c-1.4-0.1-2.8-0.6-4.1-0.8c-1.4-0.5-2.7-0.9-3.9-1.5c-1.2-0.6-2.4-1.2-3.7-1.9c-0.6-0.3-1.2-0.7-1.7-1.1  l-0.8-0.6c-0.3-0.1-0.6-0.4-0.8-0.6l-0.8-0.6L31.3,76l-0.2-0.2L31,75.7l-0.1-0.1l0,0l-1.5-1.5c-1.2-1-1.9-2.1-2.7-3.1  c-0.4-0.4-0.7-1.1-1.1-1.7l-1.1-1.7c-0.3-0.6-0.6-1.2-0.9-1.8c-0.2-0.5-0.6-1.2-0.8-1.8c-0.4-1.2-1-2.4-1.2-3.7  c-0.2-0.6-0.4-1.2-0.5-1.9c-0.1-0.6-0.2-1.2-0.3-1.8c-0.3-1.2-0.3-2.4-0.4-3.7c-0.1-1.2,0-2.5,0.1-3.7c0.2-1.2,0.3-2.4,0.6-3.5  c0.1-0.6,0.3-1.1,0.4-1.7l0.1-0.8l0.3-0.8c1.5-4.3,3.8-8,6.5-11c0.8-0.8,1.4-1.5,2.1-2.1c0.9-0.9,1.4-1.3,2.2-1.8  c1.4-1.2,2.9-2,4.3-2.8c2.8-1.5,5.5-2.3,7.7-2.8s4-0.7,5.2-0.6c0.6-0.1,1.1,0,1.4,0s0.4,0,0.4,0h0.1c2.7,0.1,5-2.2,5-5  c0.1-2.7-2.2-5-5-5c-0.2,0-0.2,0-0.3,0c0,0-0.2,0.1-0.6,0.1c-0.4,0-1,0-1.8,0.1c-1.6,0.1-4,0.4-6.9,1.2c-2.9,0.8-6.4,2-9.9,4.1  c-1.8,1-3.6,2.3-5.4,3.8C26,21.4,25,22.2,24.4,23c-0.2,0.2-0.4,0.4-0.6,0.6c-0.2,0.2-0.5,0.4-0.6,0.7c-0.5,0.4-0.8,0.9-1.3,1.4  c-3.2,3.9-5.9,8.8-7.5,14.3l-0.3,1l-0.2,1.1c-0.1,0.7-0.3,1.4-0.4,2.1c-0.3,1.5-0.4,2.9-0.5,4.5c0,1.5-0.1,3,0.1,4.5  c0.2,1.5,0.2,3,0.6,4.6c0.1,0.7,0.3,1.5,0.4,2.3c0.2,0.8,0.5,1.5,0.7,2.3c0.4,1.6,1.1,3,1.7,4.4c0.3,0.7,0.7,1.4,1.1,2.1  c0.4,0.8,0.8,1.4,1.2,2.1c0.5,0.7,0.9,1.4,1.4,2s0.9,1.3,1.5,1.9c1.1,1.3,2.2,2.7,3.3,3.5l1.7,1.6c0,0,0.1,0.1,0.1,0.1c0,0,0,0,0,0  c0,0,0,0,0,0l0.1,0.1l0.1,0.1h0.2l0.5,0.4l1,0.7c0.4,0.2,0.6,0.5,1,0.7l1.1,0.6c0.8,0.4,1.4,0.9,2.1,1.2c1.4,0.7,2.9,1.5,4.4,2  c1.5,0.7,3.1,1,4.6,1.5c1.5,0.3,3.1,0.7,4.7,0.8c1.6,0.2,3.1,0.2,4.7,0.2c0.8,0,1.6-0.1,2.4-0.1l1.2-0.1l1.1-0.1  c3.1-0.4,6.1-1.3,8.9-2.4c0.8-0.3,1.4-0.6,2.1-0.9s1.3-0.7,2-1.1c1.3-0.7,2.6-1.7,3.7-2.5c0.5-0.4,1-0.9,1.6-1.3l0.8-0.6l0.2-0.2  c0,0,0.1-0.1,0.1-0.1c0.1-0.1,0,0,0,0v0.1l0.1-0.1l0.4-0.4c0.5-0.5,1-1,1.5-1.5c0.3-0.3,0.5-0.5,0.8-0.8l0.7-0.8  c0.9-1.1,1.8-2.2,2.5-3.3c0.4-0.6,0.7-1.1,1.1-1.7c0.3-0.7,0.6-1.2,0.9-1.8c2.4-4.9,3.5-9.8,3.7-14.4C87.3,49.7,86.6,45.5,85.5,42z"></path></svg>
                 </div>
             </div>
-            loading.....</div>
+        </div>
     </div>
 </template>
 
@@ -29,14 +29,15 @@
             const {searchWallpapers} = useFetchWallpaper();
             let wallpaper = ref(null);
             let loader = ref(true);
+            let wallpaperArray = ref([]);
+            let index = ref(0);
 
             watchEffect(() => {
+                loader.value = true;
                 if (wallpaper.value) {
                     setTimeout(() => {
                         loader.value = false;
-                    },3000);
-                } else {
-                    loader.value = true;
+                    },1500);
                 }
             });
 
@@ -46,17 +47,20 @@
 
             function setWallpaper() {
                 searchWallpapers().then(json => {
-                    wallpaper.value = json.data[getRandomIndex(json.data.length)].path;
+                    wallpaperArray.value = json.data;
+                    wallpaper.value = json.data[index.value].path;
                 });
             }
 
-            function getRandomIndex(lenght) {
-                return Math.floor(Math.random() * lenght )
-            }
-
             function reload() {
-                wallpaper.value = null;
-                setWallpaper();
+                wallpaper.value = wallpaperArray.value[index.value];
+                if(index.value < wallpaperArray.value.length){
+                    index.value++;
+                    setTimeout(() => wallpaper.value = wallpaperArray.value[index.value].path, 100);
+                } else {
+                    index.value = 0;
+                    setWallpaper();
+                }
 
             }
 
@@ -80,8 +84,8 @@
     }
     .wallpaper__button {
         position: absolute;
-        top: 10vh;
-        left: 50%;
+        top: 5vh;
+        right: 5vh;
         transform: translate(-50%, -50%);
         z-index: 2;
     }
@@ -92,7 +96,7 @@
         height: 100vh;
         width: 100vw;
         background: black;
-        transition: opacity .5s;
+        transition: opacity .2s;
         z-index: 1;
     }
     .loader--hide {
@@ -146,6 +150,31 @@
         -webkit-animation: rotate 1s linear infinite;
         animation: rotate 1s linear infinite;
         fill: rgba(255, 255, 255, .5);
+    }
+
+    .gg-redo {
+        box-sizing: border-box;
+        position: relative;
+        display: block;
+        transform: scale(var(--ggs,1));
+        width: 14px;
+        height: 14px;
+        border: 2px solid;
+        border-right-color: transparent;
+        border-radius: 100px
+    }
+    .gg-redo::before {
+        content: "";
+        display: block;
+        box-sizing: border-box;
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        border-top: 2px solid;
+        border-right: 2px solid;
+        top: -3px;
+        right: -1px;
+        transform: rotate(68deg)
     }
 
 </style>
