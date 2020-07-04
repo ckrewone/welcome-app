@@ -1,16 +1,19 @@
 <template>
   <div id="app">
-    <PageList/>
+<!--    <PageList/>-->
+    <Wallpapers/>
   </div>
 </template>
 
 <script>
-import PageList from './components/PageList.vue'
+// import PageList from './components/PageList.vue'
+import Wallpapers from './components/Wallpapers';
 
 export default {
   name: 'App',
   components: {
-    PageList
+    // PageList
+    Wallpapers
   }
 }
 </script>

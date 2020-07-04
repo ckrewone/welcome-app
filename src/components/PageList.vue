@@ -2,7 +2,6 @@
     <div class="container shadow-sm">
         <div class="row">
             <div v-for="(item, i) in items" :key="i" class="col-3 mt-2 mb-2">
-                <div class="back" :style="getBackground(item.url)"></div>
                 <div class="shadow rounded-sm list-item pointer" @click="redirect(item.url)">
                     <div class="list-item__title" >{{ item.title }}</div>
                     <img class="image" :src="getIcon(item.url)"/>
