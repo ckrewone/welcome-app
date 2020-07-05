@@ -7,7 +7,7 @@
 
 <script>
 // import PageList from './components/PageList.vue'
-import Wallpapers from './components/Wallpapers';
+import Wallpapers from './components/Wallpapers/Wallpapers';
 
 export default {
   name: 'App',
