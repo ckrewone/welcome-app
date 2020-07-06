@@ -7,7 +7,8 @@
                 >
                     <i class="fa fa-refresh rotate"></i>
                 </div>
-                <div class="btn btn-lg btn-outline-primary wallpaper__button "
+                <div class="btn btn-lg btn-outline-primary wallpaper__button"
+                     @click="setShow(true)"
                 >
                     <i class="fa fa-cog rotate"></i>
                 </div>
@@ -25,6 +26,8 @@
     import Loader from '../Loader/Loader';
     import WallpapersSettingsModal from '../Modal/WallpapersSettingsModal';
     import useLoader from '../Loader/useLoader';
+    import useModal from '../Modal/useModal';
+    import {useStore} from 'vuex';
 
     export default {
         components: {
@@ -37,6 +40,8 @@
             let wallpaper = ref(null);
             let wallpaperArray = ref([]);
             let index = ref(0);
+            let { setShow } = useModal();
+            let store = useStore();
 
             watchEffect(() => {
                 setLoader(true);
@@ -47,6 +52,7 @@
 
             onMounted(() => {
                 setWallpaper();
+                console.log(store);
             });
 
             function setWallpaper() {
@@ -72,6 +78,7 @@
                 wallpaper,
                 reload,
                 loader,
+                setShow
             };
         },
     };
@@ -90,10 +97,8 @@
     .wallpaper__button-group {
         margin-left: 10px;
         position: absolute;
-        top: 3vh;
-        right: 3vh;
-        display: flex;
-        transform: translate(-50%, -50%);
+        top: 20px;
+        right: 20px;
         z-index: 2;
     }
 

@@ -1,5 +1,6 @@
 <template>
     <div class="custom-modal__base">
+        <h1> {{show}}</h1>
             <div class="custom-modal">
                 <div class="custom-modal__header">
                     <slot name="header">
@@ -14,7 +15,7 @@
                 </div>
                 <div class="custom-modal__footer">
                     <slot name="footer">
-                        Thi is default footer
+                        This is default footer
                     </slot>
                 </div>
             </div>
@@ -22,10 +23,6 @@
 </template>
 
 <script>
-
-    export default {
-        name: "Modal",
-    };
 </script>
 
 <style scoped>

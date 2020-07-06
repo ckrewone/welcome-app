@@ -1,45 +1,61 @@
 <template>
-    <Modal>
+    <Modal v-if="show">
         <template v-slot:header>
             Settings
         </template>
         <template v-slot:body>
-            Something here
+            <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Wallpaper tag"
+                    v-model="wallpaperTag"
+            >
+            <input
+                    type="text"
+                    class="form-control mt-2"
+                    placeholder="Wallpaper color theme"
+                    v-model="wallpaperColor"
+            >
         </template>
         <template v-slot:footer>
-            <transition name="fade" mode="out-in">
-                <div v-if="show" class="btn btn-primary">Hello</div>
-            </transition>
+            <div class="btn btn-primary" @click="closeModal">Ok</div>
         </template>
     </Modal>
 </template>
 
 <script>
+    import { ref } from 'vue';
     import Modal from './Modal';
+    import useModal from './useModal';
     export default {
-        name: "WallpapersSettingsModal",
         components: {
-            Modal,
+            Modal
         },
-        data() {
-            return {
-                show: false
+        setup() {
+            let wallpaperTag = ref(null);
+            let wallpaperColor = ref(null);
+            let { show, setShow } = useModal();
+            function closeModal() {
+                setShow(false);
             }
-        },
-        beforeMount() {
-            setTimeout(() => {
-                this.show = true;
-            }, 2000);
+
+            return {
+                wallpaperColor,
+                wallpaperTag,
+                closeModal,
+                show
+            }
         }
     };
 </script>
 
 <style scoped>
     .fade-enter-active, .fade-leave-active {
-        transition: opacity 1s ease-out;
+        transition: opacity .5s;
     }
 
-    .fade-enter, .fade-leave-to {
+    .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */
+    {
         opacity: 0;
     }
 </style>
