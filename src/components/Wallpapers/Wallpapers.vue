@@ -1,5 +1,6 @@
 <template>
     <div>
+        <div class="wallpaper brightness"></div>
         <div class="wallpaper">
             <div class="wallpaper__button-group">
                 <div class="btn btn-lg btn-outline-primary wallpaper__button"
@@ -8,12 +9,12 @@
                     <i class="fa fa-refresh rotate"></i>
                 </div>
                 <div class="btn btn-lg btn-outline-primary wallpaper__button"
-                     @click="setShow(true)"
+                     @click="showWallpapersSettings"
                 >
                     <i class="fa fa-cog rotate"></i>
                 </div>
             </div>
-            <img class="wallpaper" :src="wallpaper"/>
+            <img class="wallpaper" :src="wallpaper" :style="brightness"/>
             <Loader :loader="loader"/>
             <WallpapersSettingsModal/>
         </div>
@@ -21,27 +22,32 @@
 </template>
 
 <script>
-    import {ref, onMounted, watchEffect} from 'vue';
+    import {ref, onMounted, watchEffect, computed} from 'vue';
     import useFetchWallpaper from './useFetchWallpapers';
     import Loader from '../Loader/Loader';
-    import WallpapersSettingsModal from '../Modal/WallpapersSettingsModal';
+    import WallpapersSettingsModal from './WallpapersSettingsModal';
     import useLoader from '../Loader/useLoader';
-    import useModal from '../Modal/useModal';
     import {useStore} from 'vuex';
 
     export default {
         components: {
             Loader,
-            WallpapersSettingsModal
+            WallpapersSettingsModal,
         },
         setup() {
             const {searchWallpapers} = useFetchWallpaper();
-            let {setLoader, loader} = useLoader();
-            let wallpaper = ref(null);
-            let wallpaperArray = ref([]);
-            let index = ref(0);
-            let { setShow } = useModal();
-            let store = useStore();
+            const {setLoader, loader} = useLoader();
+            const wallpaper = ref(null);
+            const wallpaperArray = ref([]);
+            const index = ref(0);
+            const store = useStore();
+            const fetchWallpapers = computed(() => store.state.fetchWallpapers);
+
+            const brightness = computed(() => {
+                return {
+                    opacity: store.state.brightness,
+                }
+            })
 
             watchEffect(() => {
                 setLoader(true);
@@ -52,21 +58,29 @@
 
             onMounted(() => {
                 setWallpaper();
-                console.log(store);
             });
+
+            function showWallpapersSettings() {
+                store.commit('SET_SHOW_MODAL', true);
+            }
 
             function setWallpaper() {
                 searchWallpapers().then(json => {
-                    wallpaperArray.value = json.data;
-                    wallpaper.value = json.data[index.value].path;
+                    if (json.data && json.data.length) {
+                        wallpaperArray.value = json.data;
+                        wallpaper.value = json.data[index.value].path;
+                        store.commit('SET_FETCH_WALLPAPERS', false);
+                    } else {
+                        console.log('Empty response');
+                    }
                 });
             }
 
             function reload() {
-                wallpaper.value = wallpaperArray.value[index.value];
-                if (index.value < wallpaperArray.value.length) {
+                wallpaper.value = wallpaperArray.value[index.value].path;
+                if (index.value < wallpaperArray.value.length && !fetchWallpapers.value) {
                     index.value++;
-                    setTimeout(() => wallpaper.value = wallpaperArray.value[index.value].path, 100);
+                    setTimeout(() => wallpaper.value = wallpaperArray.value[index.value].path, 200);
                 } else {
                     index.value = 0;
                     setWallpaper();
@@ -78,7 +92,8 @@
                 wallpaper,
                 reload,
                 loader,
-                setShow
+                showWallpapersSettings,
+                brightness
             };
         },
     };
@@ -92,6 +107,12 @@
         height: 100vh;
         width: 100vw;
         z-index: -1;
+        opacity: 1;
+        transition: opacity ease-in-out 1s;
+    }
+
+    .brightness{
+        background: #000;
     }
 
     .wallpaper__button-group {

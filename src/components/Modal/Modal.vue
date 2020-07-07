@@ -1,6 +1,5 @@
 <template>
-    <div class="custom-modal__base">
-        <h1> {{show}}</h1>
+    <div class="custom-modal__base" v-show="show">
             <div class="custom-modal">
                 <div class="custom-modal__header">
                     <slot name="header">
@@ -23,6 +22,17 @@
 </template>
 
 <script>
+    import {computed} from 'vue';
+    import {useStore} from 'vuex';
+    export default {
+        setup() {
+            const store = useStore();
+            const show = computed(() => store.state.showModal);
+            return {
+                show,
+            }
+        }
+    }
 </script>
 
 <style scoped>
@@ -44,6 +54,7 @@
         transform: translate(-50%, -50%);
         min-width: 100px;
         min-height: 100px;
+        z-index: 101;
     }
 
     .divider {
