@@ -1,8 +1,8 @@
 <template>
-    <div class="container shadow-sm index">
+    <div class="container">
         <div class="row">
             <div v-for="(item, i) in items" :key="i" class="col-3 mt-2 mb-2">
-                <div class="shadow rounded-sm list-item pointer" @click="redirect(item.url)">
+                <div class="shadow rounded-sm list-item pointer index" @click="redirect(item.url)">
                     <div class="list-item__title" >{{ item.title }}</div>
                     <img class="image" :src="getIcon(item.url)"/>
                 </div>
@@ -90,6 +90,7 @@
 <style scoped>
     .list-item{
         height: 150px;
+        background: rgba(255,255,255,.3);
     }
     .list-item__title {
         font-size: 2rem;

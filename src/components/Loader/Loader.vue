@@ -30,7 +30,6 @@
         width: 100vw;
         background: black;
         transition: opacity .2s;
-        z-index: 9998;
     }
     .loader--hide {
         opacity: 0;

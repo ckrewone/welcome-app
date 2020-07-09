@@ -94,7 +94,6 @@
         left: 0;
         height: 100vh;
         width: 100vw;
-        z-index: -1;
         opacity: 1;
         transition: opacity ease-in-out 1s;
     }

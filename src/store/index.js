@@ -1,7 +1,7 @@
 import {createStore} from 'vuex';
 
 const state = {
-    showModal: true,
+    showModal: false,
     wallpaperTag: null,
     wallpaperColor: null,
     fetchWallpapers: false,
