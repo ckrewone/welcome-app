@@ -1,5 +1,5 @@
 <template>
-    <div class="container shadow-sm">
+    <div class="container shadow-sm index">
         <div class="row">
             <div v-for="(item, i) in items" :key="i" class="col-3 mt-2 mb-2">
                 <div class="shadow rounded-sm list-item pointer" @click="redirect(item.url)">
@@ -113,5 +113,8 @@
     .back {
         width: 100%;
         height: 100%;
+    }
+    .index {
+        z-index: 10;
     }
 </style>

@@ -108,7 +108,7 @@
         position: absolute;
         top: 20px;
         right: 20px;
-        z-index: 2;
+        z-index: 9999;
     }
 
     .wallpaper__button {

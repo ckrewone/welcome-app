@@ -5,7 +5,7 @@
         </template>
         <template v-slot:body>
             <div class="form-group">
-                <label for="formControlRange">Wallpaper tag:</label>
+                <label>Wallpaper tag:</label>
                 <input
                         type="text"
                         class="form-control"
@@ -13,7 +13,15 @@
                 >
             </div>
             <div class="form-group">
-                <label for="formControlRange">Brightness:</label>
+                <label>Your city:</label>
+                <input
+                        type="text"
+                        class="form-control"
+                        v-model="city"
+                >
+            </div>
+            <div class="form-group">
+                <label>Brightness:</label>
                 <input type="range" class="form-control-range" @change="setBrightness">
             </div>
             <input
@@ -56,6 +64,14 @@
                     return store.state.wallpaperColor;
                 },
             }));
+            let city = customRef(() => ({
+                set(value) {
+                    store.commit('SET_CITY', value);
+                },
+                get() {
+                    return store.state.city;
+                },
+            }));
             const store = useStore();
 
 
@@ -71,7 +87,8 @@
                 wallpaperColor,
                 wallpaperTag,
                 closeModal,
-                setBrightness
+                setBrightness,
+                city
             };
         },
     };

@@ -6,11 +6,15 @@ const state = {
     wallpaperColor: null,
     fetchWallpapers: false,
     brightness: false,
+    city: 'Lodz',
 };
 
 const mutations = {
     SET_SHOW_MODAL(state, value) {
         state.showModal = value;
+    },
+    SET_CITY(state, value) {
+        state.city = value;
     },
     SET_WALLPAPER_TAG(state, value) {
         state.wallpaperTag = value;
