@@ -29,7 +29,7 @@ export default function useFetchWallpaper() {
         if(wallpaperColor.value) {
             url += `&colors=${wallpaperColor.value}`
         }
-        return await fetch(url).then(res => res.json());
+        return await fetch(url);
     }
 
     return {

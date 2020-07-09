@@ -14,7 +14,7 @@
                     <i class="fa fa-cog rotate"></i>
                 </div>
             </div>
-            <img class="wallpaper" :src="wallpaper" :style="brightness"/>
+            <img class="wallpaper" :src="wallpaper" :style="brightness" @load="setLoader(false)"/>
             <Loader :loader="loader"/>
             <WallpapersSettingsModal/>
         </div>
@@ -22,7 +22,7 @@
 </template>
 
 <script>
-    import {ref, onMounted, watchEffect, computed} from 'vue';
+    import {ref, onMounted, computed} from 'vue';
     import useFetchWallpaper from './useFetchWallpapers';
     import Loader from '../Loader/Loader';
     import WallpapersSettingsModal from './WallpapersSettingsModal';
@@ -42,20 +42,7 @@
             const index = ref(0);
             const store = useStore();
             const fetchWallpapers = computed(() => store.state.fetchWallpapers);
-
-            const brightness = computed(() => {
-                return {
-                    opacity: store.state.brightness,
-                }
-            })
-
-            watchEffect(() => {
-                setLoader(true);
-                if (wallpaper.value) {
-                    setLoader(false);
-                }
-            });
-
+            const brightness = computed(() => ({opacity: store.state.brightness}));
             onMounted(() => {
                 setWallpaper();
             });
@@ -77,7 +64,7 @@
             }
 
             function reload() {
-                wallpaper.value = wallpaperArray.value[index.value].path;
+                setLoader(true);
                 if (index.value < wallpaperArray.value.length && !fetchWallpapers.value) {
                     index.value++;
                     setTimeout(() => wallpaper.value = wallpaperArray.value[index.value].path, 200);
@@ -93,7 +80,8 @@
                 reload,
                 loader,
                 showWallpapersSettings,
-                brightness
+                brightness,
+                setLoader,
             };
         },
     };
@@ -111,7 +99,7 @@
         transition: opacity ease-in-out 1s;
     }
 
-    .brightness{
+    .brightness {
         background: #000;
     }
 

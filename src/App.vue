@@ -2,18 +2,21 @@
   <div id="app">
 <!--    <PageList/>-->
     <Wallpapers/>
+    <WeatherView/>
   </div>
 </template>
 
 <script>
 // import PageList from './components/PageList.vue'
 import Wallpapers from './components/Wallpapers/Wallpapers';
+import WeatherView from './components/Weather/WeatherView';
 
 export default {
   name: 'App',
   components: {
     // PageList
-    Wallpapers
+    Wallpapers,
+    WeatherView
   }
 }
 </script>

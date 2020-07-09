@@ -1,5 +1,5 @@
 module.exports = {
     devServer: {
-        proxy: 'https://wallhaven.cc/api/v1/'
+        proxy: 'https://community-open-weather-map.p.rapidapi.com'
     }
 }
