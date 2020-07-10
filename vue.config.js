@@ -1,5 +1,3 @@
 module.exports = {
-    devServer: {
-        proxy: 'https://wallhaven.cc/api/v1/'
-    }
-}
+    publicPath: process.env.NODE_ENV === 'prodution' ? '././' : './'
+};
