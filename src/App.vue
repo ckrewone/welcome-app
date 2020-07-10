@@ -1,9 +1,15 @@
 <template>
     <div id="app">
         <Wallpapers/>
-        <WeatherView/>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2 offset-md-4">
+                    <WeatherView/>
+                </div>
+                    <TimeWidget/>
+            </div>
+        </div>
         <PageList/>
-        <TimeWidget/>
     </div>
 </template>
 

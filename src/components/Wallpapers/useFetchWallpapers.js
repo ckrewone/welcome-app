@@ -17,15 +17,13 @@ export default function useFetchWallpaper() {
     const h = screen.height;
 
     function gcd (a, b) {
-        return (b == 0) ? a : gcd (b, a%b);
+        return (b === 0) ? a : gcd (b, a%b);
     }
     const r = gcd (w, h);
 
     async function searchWallpapers() {
         let url = config.wallpapers.url + `/search?apikey=${config.wallpapers.apiKey}&ratios=${w/r}x${h/r}`;
-        if(wallpaperTag.value) {
-            url += `&q=${wallpaperTag.value}`
-        }
+        url += `&q=${wallpaperTag.value || 'abstract'}`
         if(wallpaperColor.value) {
             url += `&colors=${wallpaperColor.value}`
         }

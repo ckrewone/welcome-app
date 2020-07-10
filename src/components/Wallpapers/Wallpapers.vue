@@ -22,12 +22,13 @@
 </template>
 
 <script>
-    import {ref, onMounted, computed} from 'vue';
+    import {ref, onMounted, computed, watch} from 'vue';
     import useFetchWallpaper from './useFetchWallpapers';
     import Loader from '../Loader/Loader';
     import WallpapersSettingsModal from './WallpapersSettingsModal';
     import useLoader from '../Loader/useLoader';
     import {useStore} from 'vuex';
+    import {LOCAL_STORAGE_KEY} from '../../../constants/LocalStorageKeys';
 
     export default {
         components: {
@@ -44,12 +45,22 @@
             const fetchWallpapers = computed(() => store.state.fetchWallpapers);
             const brightness = computed(() => ({opacity: store.state.brightness}));
             onMounted(() => {
-                setWallpaper();
+                setLoader(true);
+                const savedWallpaper = window.localStorage.getItem(LOCAL_STORAGE_KEY.WALLPAPER);
+                if (savedWallpaper) {
+                    wallpaper.value = savedWallpaper;
+                } else {
+                    setWallpaper();
+                }
             });
 
             function showWallpapersSettings() {
                 store.commit('SET_SHOW_MODAL', true);
             }
+
+            watch(wallpaper, (val) => {
+                window.localStorage.setItem(LOCAL_STORAGE_KEY.WALLPAPER, val);
+            });
 
             function setWallpaper() {
                 searchWallpapers().then(json => {

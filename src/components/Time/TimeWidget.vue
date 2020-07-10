@@ -1,6 +1,6 @@
 <template>
-    <div v-if="time" class="time">
-        <h1>{{time}}</h1>
+    <div class="time">
+        <h1 class="time__content">{{time}}</h1>
     </div>
 </template>
 
@@ -15,9 +15,13 @@
             onMounted(() => {
                 setInterval(() => {
                     const now = new Date();
-                    time.value = now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds()
+                    time.value = getTime(now.getHours()) + ":" + getTime(now.getMinutes()) + ":" + getTime(now.getSeconds())
                 }, 1000);
             });
+
+            function getTime(time) {
+                return (time < 10 ? '0' : '') + time;
+            }
             return {
                 time
             }
@@ -27,12 +31,12 @@
 
 <style scoped>
     .time {
-        position: absolute;
-        left: 50%;
-        bottom: 10%;
-        transform: translate(-50%, -50%);
-        z-index: 10000;
-        font-size: 30px;
+        position: relative;
         color: white;
+        margin: 20px;
+    }
+
+    .time__content {
+        font-size: 7rem
     }
 </style>

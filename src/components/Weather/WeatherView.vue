@@ -1,7 +1,8 @@
 <template>
-    <div v-if="weather" class="weather">
+    <div class="weather">
         <h1 v-if="weather.name">{{weather.name}}</h1>
         <h2 v-if="weather.main">{{(weather.main.temp - 273.15).toFixed(1)}}°C</h2>
+        <h5 v-if="weather.weather">{{weather.weather[0].main}}</h5>
     </div>
 </template>
 
@@ -30,8 +31,9 @@
 
 <style scoped>
  .weather {
-     z-index: 10000;
-     font-size: 30px;
+     position: relative;
      color: white;
+     margin: 20px;
+
  }
 </style>

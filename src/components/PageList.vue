@@ -1,14 +1,37 @@
 <template>
     <div class="container">
         <div class="row">
-            <div v-for="(item, i) in items" :key="i" class="col-3 mt-2 mb-2">
-                <div class="shadow rounded-sm list-item pointer index" @click="redirect(item.url)">
-                    <div class="list-item__title" >{{ item.title }}</div>
+            <div
+                    v-for="(item, i) in items"
+                    :key="i"
+                    class="col-3 mt-2 mb-2"
+            >
+                <div
+                        class="hover pointer"
+                        @mouseover="active(item.url)"
+                        @mouseout="deactive(item.url)"
+                        @click="redirect(item.url)"
+                />
+                <div
+                        class="rounded-sm list-item list-item--transition"
+                        :class="activeBlock[item.url] ? 'shadow-lg selected' : ''"
+                        @click="redirect(item.url)"
+                >
+                    <div class="list-item__title">{{ item.title }}</div>
                     <img class="image" :src="getIcon(item.url)"/>
                 </div>
             </div>
             <div class="col-3 mt-2 mb-2">
-                <div v-if="activeAdding" class="shadow rounded-sm list-item">
+                <div
+                        class="hover pointer"
+                        @mouseover="active('add')"
+                        @mouseout="deactive('add')"
+                />
+                <div
+                        v-if="activeAdding"
+                        class="rounded-sm list-item list-item--transition"
+                        :class="activeBlock['add'] ? 'shadow-lg selected' : ''"
+                >
                     <div class="input-group input-group-sm p-2">
                         <div class="input-group-prepend">
                             <span class="input-group-text">Title:</span>
@@ -23,7 +46,10 @@
                     </div>
                     <button class="btn btn-link center p-1" @click="addToList" type="button">Add</button>
                 </div>
-                <div v-else class="shadow rounded-sm list-item">
+                <div v-else
+                     class="shadow rounded-sm list-item list-item--transition"
+                     :class="activeBlock['add'] ? 'shadow-lg selected' : ''"
+                >
                     <div class="btn btn-bordered-primary add-item" @click="activeAdding = true">+</div>
                 </div>
             </div>
@@ -32,7 +58,8 @@
 </template>
 
 <script>
-    import {ref} from 'vue';
+    import {ref, onMounted, watch} from 'vue';
+    import {LOCAL_STORAGE_KEY} from '../../constants/LocalStorageKeys';
 
     export default {
         setup() {
@@ -47,16 +74,30 @@
                 },
             ]);
 
+            onMounted(() => {
+                const savedItems = window.localStorage.getItem(LOCAL_STORAGE_KEY.ITEMS);
+                if (savedItems) {
+                    items.value = savedItems.split('|').map(el => JSON.parse(el));
+                }
+            });
+
+            watch(items, (val) => {
+                window.localStorage.setItem(LOCAL_STORAGE_KEY.ITEMS, val.map(el => JSON.stringify(el)).join('|'));
+            });
+
             let activeAdding = ref(false);
             let addTitle = ref('');
             let addUrl = ref('');
+            let activeBlock = ref({});
 
             function addToList() {
                 activeAdding.value = false;
-                items.value.push({
+                const newItems = [...items.value];
+                newItems.push({
                     title: addTitle.value,
                     url: addUrl.value,
                 });
+                items.value = newItems;
                 addTitle.value = '';
                 addUrl.value = '';
             }
@@ -70,7 +111,15 @@
             }
 
             function getBackground(url) {
-                return `background: url("${getIcon(url)}"); filter: blur(15px);`
+                return `background: url("${getIcon(url)}"); filter: blur(15px);`;
+            }
+
+            function active(url) {
+                activeBlock.value[url] = true;
+            }
+
+            function deactive(url) {
+                activeBlock.value[url] = false;
             }
 
             return {
@@ -81,23 +130,37 @@
                 addTitle,
                 getIcon,
                 redirect,
-                getBackground
+                getBackground,
+                active,
+                activeBlock,
+                deactive
             };
         },
     };
 </script>
 
 <style scoped>
-    .list-item{
+    .list-item {
         height: 150px;
-        background: rgba(255,255,255,.3);
+        background: rgba(255, 255, 255, .3);
     }
+
+    .list-item--transition {
+        transition: all .2s ease-in-out;
+    }
+
     .list-item__title {
-        font-size: 2rem;
+        font-size: 3rem;
+        color: rgba(0,0,0,.8);
         padding-top: 10px;
     }
+
+    .selected {
+        background: rgba(255,255,255,.5);
+    }
     .add-item {
-        font-size: 3rem;
+        font-size: 5rem;
+        color: rgba(0,0,0,.8);
         position: absolute;
         top: 50%;
         left: 50%;
@@ -105,17 +168,19 @@
         transform: translate(-50%, -50%);
         margin: 0;
     }
+
     .image {
-        height: 16px;
+        margin-top: 10px;
+        height: 24px;
     }
+
     .pointer {
         cursor: pointer;
     }
-    .back {
-        width: 100%;
+
+    .hover {
+        position: absolute;
         height: 100%;
-    }
-    .index {
-        z-index: 10;
+        width: 100%;
     }
 </style>

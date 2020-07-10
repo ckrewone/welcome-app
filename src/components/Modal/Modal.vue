@@ -1,6 +1,6 @@
 <template>
-    <div class="custom-modal__base" v-show="show">
-            <div class="custom-modal">
+    <div class="custom-modal" v-show="show">
+            <div class="custom-modal__base">
                 <div class="custom-modal__header">
                     <slot name="header">
                         Header
@@ -36,7 +36,7 @@
 </script>
 
 <style scoped>
-    .custom-modal__base {
+    .custom-modal {
         z-index: 100;
         position: absolute;
         height: 100%;
@@ -44,7 +44,7 @@
         background: rgba(0, 0, 0, .5);
     }
 
-    .custom-modal {
+    .custom-modal__base {
         padding: 2rem;
         border-radius: 5px;
         background: #fff;
