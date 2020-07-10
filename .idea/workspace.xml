@@ -2,9 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3b5d368c-42ef-4980-8a46-8b0d13296e40" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/components/PageList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PageList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Wallpapers/Wallpapers.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Wallpapers/Wallpapers.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/app.a7799974.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/app.436a5089.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/app.436a5089.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/chunk-vendors.157da6db.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/chunk-vendors.157da6db.js.map" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +49,11 @@
     <property name="prettierjs.PrettierConfiguration.Package" value="$PROJECT_DIR$/node_modules/prettier" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -66,5 +75,9 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="385" y="196" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1594059751667" />
+    <state x="450" y="353" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1594393516214">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="450" y="353" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/0.0.1440.900@0.0.1440.900" timestamp="1594393516214" />
   </component>
 </project>
