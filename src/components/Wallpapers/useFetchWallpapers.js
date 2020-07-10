@@ -22,7 +22,7 @@ export default function useFetchWallpaper() {
     const r = gcd (w, h);
 
     async function searchWallpapers() {
-        let url = `/search?apikey=${config.wallpapers.apiKey}&ratios=${w/r}x${h/r}`;
+        let url = config.wallpapers.url + `/search?apikey=${config.wallpapers.apiKey}&ratios=${w/r}x${h/r}`;
         if(wallpaperTag.value) {
             url += `&q=${wallpaperTag.value}`
         }
