@@ -16,51 +16,35 @@
             </div>
             <img class="wallpaper" :src="wallpaper" :style="wallpaperBrightness" @load="setLoader(false)"/>
             <Loader :loader="loader"/>
-            <WallpapersSettingsModal/>
-            <AddPageItemModal/>
         </div>
     </div>
 </template>
 
 <script>
-    import {ref, onMounted, computed, watch} from 'vue';
+    import {ref, onMounted, computed} from 'vue';
     import useFetchWallpaper from './useFetchWallpapers';
     import Loader from '../Loader/Loader';
-    import WallpapersSettingsModal from '../Settings/SettingsModal';
     import useLoader from '../Loader/useLoader';
-    import {LOCAL_STORAGE_KEY} from '../../../constants/LocalStorageKeys';
-    import {brightness, getModal} from '../../store/useStore';
+    import {brightness, getModal, wallpaper} from '../../store/useStore';
     import {MODAL_TYPES} from '../../../constants/StoreKeys';
-    import AddPageItemModal from '../Block/AddPageItemModal';
 
     export default {
         components: {
-            AddPageItemModal,
             Loader,
-            WallpapersSettingsModal,
         },
         setup() {
             const {searchWallpapers} = useFetchWallpaper();
             const {setLoader, loader} = useLoader();
-            const wallpaper = ref(null);
             const wallpaperArray = ref([]);
             const index = ref(0);
             const fetchWallpapers = computed(() => '');
             const wallpaperBrightness = computed(()=> ({opacity: brightness.value/100}));
             onMounted(() => {
                 setLoader(true);
-                const savedWallpaper = window.localStorage.getItem(LOCAL_STORAGE_KEY.WALLPAPER);
-                if (savedWallpaper) {
-                    wallpaper.value = savedWallpaper;
-                } else {
+                if (!wallpaper) {
                     setWallpaper();
                 }
             });
-
-            watch(wallpaper, (val) => {
-                window.localStorage.setItem(LOCAL_STORAGE_KEY.WALLPAPER, val);
-            });
-
 
             function setWallpaper() {
                 searchWallpapers().then(json => {

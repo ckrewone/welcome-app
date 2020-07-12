@@ -1,5 +1,5 @@
 <template>
-    <Modal v-if="isShow">
+    <Modal :modal-type="type">
         <template v-slot:header>
             Settings
         </template>
@@ -8,7 +8,7 @@
                 <label>Wallpaper tag:</label>
                 <input
                         type="text"
-                        class="form-control"
+                        class="form-control col-form-label-lg"
                         v-model="wallpaperTag"
                 >
             </div>
@@ -16,17 +16,17 @@
                 <label>Your city:</label>
                 <input
                         type="text"
-                        class="form-control"
+                        class="form-control col-form-label-lg"
                         v-model="city"
                 >
             </div>
             <div class="form-group">
                 <label>Wallpaper brightness:</label>
-                <input type="range" class="form-control-range" v-model="brightness">
+                <input type="range" class="form-control-range col-form-label-lg" v-model="brightness">
             </div>
             <input
                     type="text"
-                    class="form-control mt-2"
+                    class="form-control mt-2 "
                     placeholder="WIP:Wallpaper color theme"
                     v-model="wallpaperColor"
                     readonly
@@ -56,13 +56,14 @@
                 brightness,
                 city,
                 isShow: computed(() => getModal(MODAL_TYPES.SETTINGS).isShow),
-                hide: getModal(MODAL_TYPES.SETTINGS).hide
+                hide: getModal(MODAL_TYPES.SETTINGS).hide,
+                type: MODAL_TYPES.SETTINGS
             };
         },
     };
 </script>
 
-<style scoped>
+<style>
     .fade-enter-active, .fade-leave-active {
         transition: opacity .5s;
     }

@@ -20,7 +20,7 @@
     };
 </script>
 
-<style scoped>
+<style>
 
     .loader {
         position: absolute;

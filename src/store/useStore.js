@@ -1,7 +1,7 @@
 import {ref, watch} from 'vue';
 import {MODAL_TYPES} from '../../constants/StoreKeys';
 import {useModal} from './useModal';
-import useLocalStorage from './useLocalStorage';
+import useLocalStorage from '../components/Utils/useLocalStorage';
 import {LOCAL_STORAGE_KEY} from '../../constants/LocalStorageKeys';
 
 const modal = ref({
@@ -9,6 +9,7 @@ const modal = ref({
     [MODAL_TYPES.ADD_PAGE] : useModal(),
 });
 const wallpaperTag = ref('abstract');
+const wallpaper = ref('');
 const wallpaperColor = ref('');
 const city = ref('Lodz');
 const brightness = ref(50);
@@ -26,7 +27,8 @@ const pages = ref([
 const {setKey, getKey} = useLocalStorage();
 
 function onCreate() {
-    wallpaperTag.value = getKey(LOCAL_STORAGE_KEY.WALLPAPER) ? getKey(LOCAL_STORAGE_KEY.WALLPAPER) : 'abstract';
+    wallpaperTag.value = getKey(LOCAL_STORAGE_KEY.WALLPAPER_TAG) ? getKey(LOCAL_STORAGE_KEY.WALLPAPER_TAG) : 'abstract';
+    wallpaper.value = getKey(LOCAL_STORAGE_KEY.WALLPAPER) ? getKey(LOCAL_STORAGE_KEY.WALLPAPER) : 'abstract';
     city.value = getKey(LOCAL_STORAGE_KEY.CITY) ? getKey(LOCAL_STORAGE_KEY.CITY) : 'Lodz';
     brightness.value = getKey(LOCAL_STORAGE_KEY.BRIGHTNESS) ? getKey(LOCAL_STORAGE_KEY.BRIGHTNESS) : 50;
 
@@ -43,8 +45,12 @@ watch(pages, (newVal) => {
 });
 
 
-watch(wallpaperTag, (newVal) => {
+watch(wallpaper, (newVal) => {
     setKey(LOCAL_STORAGE_KEY.WALLPAPER, newVal);
+});
+
+watch(wallpaperTag, (newVal) => {
+    setKey(LOCAL_STORAGE_KEY.WALLPAPER_TAG, newVal);
 });
 
 watch(city, (newVal) => {
@@ -68,5 +74,6 @@ export {
     wallpaperTag,
     city,
     brightness,
-    pages
+    pages,
+    wallpaper
 }

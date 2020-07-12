@@ -1,7 +1,7 @@
 <template>
     <div
-            class="pointer mt-2 mb-2"
-            :class="getColClass"
+            class="pointer col-md-3 list-item"
+            :class="activeBlock ? 'list-item--hover' : ''"
     >
         <div
                 class="hover"
@@ -10,13 +10,15 @@
                 @click="onClickBlock"
         />
         <div
-                class="rounded-sm list-item list-item--transition"
+                class="rounded-sm list-item__base list-item--transition"
                 :class="activeBlock ? 'shadow-lg selected' : ''"
         >
             <div class="list-item__main">
                 <slot/>
             </div>
-            <div class="list-item__title">
+            <div class="list-item__title"
+                 :class="activeBlock ? 'list-item__title--hover' : ''"
+            >
                 <slot name="footer"/>
             </div>
         </div>
@@ -45,9 +47,18 @@
     };
 </script>
 
-<style scoped>
-    .list-item {
-        height: 100%;
+<style>
+    .list-item{
+        transition: padding .2s ease-in-out;
+        padding: 0px 15px 0px 15px;
+    }
+
+    .list-item--hover {
+        padding: 0px 10px 0px 10px;
+    }
+
+    .list-item__base {
+        height: 15vh;
         background: rgba(255, 255, 255, .3);
     }
 
@@ -56,26 +67,31 @@
     }
 
     .list-item__title {
-        font-size: 1rem;
-        color: rgba(0, 0, 0, .8);
+        transition: font-size .2s ease-in-out;
+        font-size: 1.5rem;
         padding-top: 10px;
+        color: rgba(0, 0, 0, .8);
+    }
+
+    .list-item__title--hover{
+        font-size: 1.8rem;
     }
 
     .list-item__main {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
     }
 
     .selected {
         background: rgba(255, 255, 255, .5);
     }
 
-    .image {
-        margin-top: 40px;
-        height: 28px;
-    }
-
     .hover {
-        position: absolute;
         height: 100%;
         width: 100%;
+        z-index: 100;
+        position: absolute;
     }
 </style>

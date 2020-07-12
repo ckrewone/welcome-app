@@ -1,5 +1,5 @@
 <template>
-    <Modal v-if="isShow">
+    <Modal :modal-type="type">
         <template v-slot:header>
             Add page
         </template>
@@ -8,7 +8,7 @@
                 <label>
                     Title
                     <input type="text"
-                            class="form-control"
+                            class="form-control col-form-label-lg"
                             v-model="title"
                             :class="titleError ? 'is-invalid' : ''"
                     />
@@ -20,7 +20,7 @@
                     Absolute url
                     <input type="text"
                            v-model="url"
-                           class="form-control"
+                           class="form-control col-form-label-lg"
                            :class="urlError ? 'is-invalid' : ''"
                     />
                     <div class="invalid-feedback">{{urlError}}</div>
@@ -94,12 +94,9 @@
                 isShow: computed(() => getModal(MODAL_TYPES.ADD_PAGE).isShow),
                 addPage,
                 titleError,
-                urlError
+                urlError,
+                type: MODAL_TYPES.ADD_PAGE
             };
         },
     };
 </script>
-
-<style scoped>
-
-</style>

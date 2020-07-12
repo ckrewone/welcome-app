@@ -38,8 +38,11 @@
     };
 </script>
 
-<style scoped>
+<style>
     .image {
         height: 32px;
+    }
+    .pointer {
+        cursor: pointer;
     }
 </style>

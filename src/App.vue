@@ -6,18 +6,22 @@
                 <div class="col-md-2 offset-md-4">
                     <WeatherView/>
                 </div>
-                    <TimeWidget/>
+                <TimeWidget/>
             </div>
         </div>
         <PageList/>
+        <SettingsModal/>
+        <AddPageItemModal/>
     </div>
 </template>
 
 <script>
-    import PageList from './components/Block/BlockList.vue'
+    import PageList from './components/Block/BlockList.vue';
     import Wallpapers from './components/Wallpapers/Wallpapers';
     import WeatherView from './components/Weather/WeatherView';
     import TimeWidget from './components/Time/TimeWidget';
+    import SettingsModal from './components/Settings/SettingsModal';
+    import AddPageItemModal from './components/Block/AddPageItemModal';
 
     export default {
         name: 'App',
@@ -26,6 +30,8 @@
             Wallpapers,
             WeatherView,
             TimeWidget,
+            SettingsModal,
+            AddPageItemModal,
         },
     };
 </script>
@@ -38,5 +44,6 @@
         text-align: center;
         color: #2c3e50;
         margin-top: 60px;
+        overflow: hidden;
     }
 </style>

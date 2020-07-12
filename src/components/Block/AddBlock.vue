@@ -23,7 +23,7 @@
     };
 </script>
 
-<style scoped>
+<style>
     .plus {
         font-size: 3rem;
     }

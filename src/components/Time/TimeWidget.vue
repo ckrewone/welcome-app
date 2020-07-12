@@ -29,7 +29,7 @@
     };
 </script>
 
-<style scoped>
+<style>
     .time {
         position: relative;
         color: white;
@@ -37,6 +37,6 @@
     }
 
     .time__content {
-        font-size: 7rem
+        font-size: 6rem
     }
 </style>

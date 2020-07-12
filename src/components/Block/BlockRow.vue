@@ -5,7 +5,6 @@
             <div
                     v-for="(item, i) in items"
                     :key="i"
-                    class="mt-2 mb-2"
                     :class="getColClass"
             >
                 <PageItem :item="item"/>
@@ -43,6 +42,6 @@
     };
 </script>
 
-<style scoped>
+<style>
 
 </style>
