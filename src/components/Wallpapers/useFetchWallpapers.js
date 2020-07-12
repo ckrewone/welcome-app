@@ -1,5 +1,5 @@
 import useFetch from '../Utils/useFetch';
-import { computed } from 'vue';
+import {wallpaperTag, wallpaperColor} from '../../store/useStore';
 
 export default function useFetchWallpaper() {
     const { fetch } = useFetch();
@@ -9,8 +9,6 @@ export default function useFetchWallpaper() {
             apiKey: "nOhRnwoazI2R4KhMGrImVaAsYke6nfIe"
         }
     };
-    const wallpaperTag = computed(() => '')
-    const wallpaperColor = computed(() => '')
     const w = screen.width;
     const h = screen.height;
 
@@ -21,7 +19,7 @@ export default function useFetchWallpaper() {
 
     async function searchWallpapers() {
         let url = config.wallpapers.url + `/search?apikey=${config.wallpapers.apiKey}&ratios=${w/r}x${h/r}`;
-        url += `&q=${wallpaperTag.value || 'abstract'}`
+        url += `&q=${wallpaperTag.value}`
         if(wallpaperColor.value) {
             url += `&colors=${wallpaperColor.value}`
         }
