@@ -21,7 +21,7 @@
                 >
             </div>
             <div class="form-group">
-                <label>Brightness:</label>
+                <label>Wallpaper brightness:</label>
                 <input type="range" class="form-control-range" @change="setBrightness">
             </div>
             <input

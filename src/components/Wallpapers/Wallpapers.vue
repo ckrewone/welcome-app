@@ -25,7 +25,7 @@
     import {ref, onMounted, computed, watch} from 'vue';
     import useFetchWallpaper from './useFetchWallpapers';
     import Loader from '../Loader/Loader';
-    import WallpapersSettingsModal from './WallpapersSettingsModal';
+    import WallpapersSettingsModal from '../Settings/SettingsModal';
     import useLoader from '../Loader/useLoader';
     import {useStore} from 'vuex';
     import {LOCAL_STORAGE_KEY} from '../../../constants/LocalStorageKeys';

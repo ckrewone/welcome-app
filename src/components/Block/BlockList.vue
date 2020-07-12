@@ -1,45 +1,8 @@
 <template>
     <div class="container">
         <div class="row">
-            <div
-                    v-for="(item, i) in items"
-                    :key="i"
-                    class="col-2 mt-2 mb-2"
-            >
-                <PageItem :item="item"/>
-            </div>
-            <div class="col-3 mt-2 mb-2">
-                <div
-                        class="hover pointer"
-                        @mouseover="active('add')"
-                        @mouseout="deactive('add')"
-                />
-                <div
-                        v-if="activeAdding"
-                        class="rounded-sm list-item list-item--transition"
-                        :class="activeBlock['add'] ? 'shadow-lg selected' : ''"
-                >
-                    <div class="input-group input-group-sm p-2">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">Title:</span>
-                        </div>
-                        <input type="text" class="form-control" v-model="addTitle"/>
-                    </div>
-                    <div class="input-group input-group-sm p-2">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">Url:</span>
-                        </div>
-                        <input type="text" v-model="addUrl" class="form-control"/>
-                    </div>
-                    <button class="btn btn-link center p-1" @click="addToList" type="button">Add</button>
-                </div>
-                <div v-else
-                     class="shadow rounded-sm list-item list-item--transition"
-                     :class="activeBlock['add'] ? 'shadow-lg selected' : ''"
-                >
-                    <div class="btn btn-bordered-primary add-item" @click="activeAdding = true">+</div>
-                </div>
-            </div>
+            <PageItem v-for="(item, i) in items" :item="item" :key="i"/>
+            <AddBlock/>
         </div>
     </div>
 </template>
@@ -48,10 +11,12 @@
     import {ref, onMounted, watch} from 'vue';
     import {LOCAL_STORAGE_KEY} from '../../../constants/LocalStorageKeys';
     import PageItem from './PageItem';
+    import AddBlock from './AddBlock';
 
     export default {
         components: {
             PageItem,
+            AddBlock
         },
         setup() {
             let items = ref([
@@ -112,7 +77,7 @@
 <style scoped>
     .add-item {
         font-size: 5rem;
-        color: rgba(0,0,0,.8);
+        color: rgba(0, 0, 0, .8);
         position: absolute;
         top: 50%;
         left: 50%;

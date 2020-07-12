@@ -1,7 +1,10 @@
 <template>
-    <div>
+    <div
+            class="pointer mt-2 mb-2"
+            :class="getColClass"
+    >
         <div
-                class="hover pointer"
+                class="hover"
                 @mouseover="activeBlock = true"
                 @mouseout="activeBlock = false"
                 @click="onClickBlock"
@@ -32,9 +35,11 @@
         },
         setup() {
             const activeBlock = ref(false);
+            const getColClass = ref('col-md-3');
 
             return {
                 activeBlock,
+                getColClass
             };
         },
     };
