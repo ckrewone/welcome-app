@@ -9,7 +9,7 @@
                     <i class="fa fa-refresh rotate"></i>
                 </div>
                 <div class="btn btn-lg btn-outline-primary wallpaper__button"
-                     @click="showWallpapersSettings"
+                     @click="show"
                 >
                     <i class="fa fa-cog rotate"></i>
                 </div>
@@ -29,6 +29,7 @@
     import useLoader from '../Loader/useLoader';
     import {useStore} from 'vuex';
     import {LOCAL_STORAGE_KEY} from '../../../constants/LocalStorageKeys';
+    import {show} from '../../store/useModal';
 
     export default {
         components: {
@@ -54,9 +55,9 @@
                 }
             });
 
-            function showWallpapersSettings() {
-                store.commit('SET_SHOW_MODAL', true);
-            }
+            // function showWallpapersSettings() {
+            //     store.commit('SET_SHOW_MODAL', true);
+            // }
 
             watch(wallpaper, (val) => {
                 window.localStorage.setItem(LOCAL_STORAGE_KEY.WALLPAPER, val);
@@ -90,7 +91,7 @@
                 wallpaper,
                 reload,
                 loader,
-                showWallpapersSettings,
+                show,
                 brightness,
                 setLoader,
             };

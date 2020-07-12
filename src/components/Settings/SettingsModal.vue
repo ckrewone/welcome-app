@@ -1,5 +1,5 @@
 <template>
-    <Modal>
+    <Modal v-if="isShow">
         <template v-slot:header>
             Settings
         </template>
@@ -33,21 +33,29 @@
             >
         </template>
         <template v-slot:footer>
-            <div class="btn btn-primary" @click="closeModal">Ok</div>
+            <div class="btn btn-primary" @click="hide">Ok</div>
         </template>
     </Modal>
 </template>
 
 <script>
-    import {customRef} from 'vue';
+    import {customRef, onMounted} from 'vue';
     import {useStore} from 'vuex';
     import Modal from '../Modal/Modal';
+    import {isShow, hide} from '../../store/useModal';
 
     export default {
         components: {
             Modal,
         },
         setup() {
+
+            onMounted( () => {
+                setInterval(() => {
+                    console.log(isShow.value);
+                }, 1000);
+            })
+
             let wallpaperTag = customRef(() => ({
                 set(value) {
                     store.commit('SET_WALLPAPER_TAG', value);
@@ -74,11 +82,6 @@
             }));
             const store = useStore();
 
-
-            function closeModal() {
-                store.commit('SET_SHOW_MODAL', false);
-            }
-
             function setBrightness(e) {
                 store.commit('SET_BRIGHTNESS', e.target.value/100);
             }
@@ -86,9 +89,10 @@
             return {
                 wallpaperColor,
                 wallpaperTag,
-                closeModal,
                 setBrightness,
-                city
+                city,
+                isShow,
+                hide
             };
         },
     };
