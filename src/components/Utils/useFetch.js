@@ -5,7 +5,12 @@ export default function useFetch() {
         return await (fetchData(url, options).then(res => res.json()));
     }
 
+    async function canFetch(url) {
+        return await fetchData(url);
+    }
+
     return {
         fetch,
+        canFetch
     }
 }

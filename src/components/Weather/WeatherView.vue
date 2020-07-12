@@ -8,14 +8,12 @@
 
 <script>
     import useFetchWeather from './useFetchWeather';
-    import {useStore } from 'vuex';
     import { ref, computed, watchEffect } from 'vue';
     export default {
         setup() {
             const { fetchWeather } = useFetchWeather();
             const weather = ref({});
-            const store = useStore();
-            const city = computed(() => store.state.city);
+            const city = computed(() => 'Lodz');
 
             watchEffect(() => {
                 fetchWeather(city.value).then(res => {

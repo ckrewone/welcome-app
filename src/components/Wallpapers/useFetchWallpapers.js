@@ -1,5 +1,4 @@
 import useFetch from '../Utils/useFetch';
-import { useStore } from 'vuex';
 import { computed } from 'vue';
 
 export default function useFetchWallpaper() {
@@ -10,9 +9,8 @@ export default function useFetchWallpaper() {
             apiKey: "nOhRnwoazI2R4KhMGrImVaAsYke6nfIe"
         }
     };
-    const store = useStore();
-    const wallpaperTag = computed(() => store.state.wallpaperTag)
-    const wallpaperColor = computed(() => store.state.wallpaperColor)
+    const wallpaperTag = computed(() => '')
+    const wallpaperColor = computed(() => '')
     const w = screen.width;
     const h = screen.height;
 

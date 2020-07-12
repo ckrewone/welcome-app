@@ -1,4 +1,6 @@
 export const LOCAL_STORAGE_KEY = {
     WALLPAPER: 'wallpaper_url',
-    ITEMS: 'page_items'
-}
+    CITY: 'city',
+    PAGES: 'page_items',
+    BRIGHTNESS: 'brightness'
+};

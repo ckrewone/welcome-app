@@ -1,5 +1,5 @@
 <template>
-    <BlockItem :on-click-block="add">
+    <BlockItem :on-click-block="show">
         <template v-slot:default>
             <div class="plus">+</div>
         </template>
@@ -8,18 +8,16 @@
 
 <script>
     import BlockItem from './BlockItem';
+    import { getModal } from '../../store/useStore';
+    import {MODAL_TYPES} from '../../../constants/StoreKeys';
 
     export default {
         components: {
             BlockItem,
         },
         setup() {
-            function add() {
-                console.log('test');
-            }
-
             return {
-                add
+                show: getModal(MODAL_TYPES.ADD_PAGE).show
             }
         }
     };

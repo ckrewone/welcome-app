@@ -1,32 +1,22 @@
-import {ref, computed, watch} from 'vue';
+import {ref, computed} from 'vue';
 
-let showModal = ref(false);
+export function useModal() {
+    let showModal = ref(false);
 
-function show() {
-    const newShow = ref(true);
-    showModal.value = newShow.value;
+    function show() {
+        const newShow = ref(true);
+        showModal.value = newShow.value;
+    }
+
+    function hide() {
+        showModal.value = false;
+    }
+
+    const isShow = computed(() => showModal.value);
+
+    return  {
+        show,
+        hide,
+        isShow,
+    };
 }
-
-const history = [];
-history.push(showModal); // push initial state
-
-watch(showModal, (newState) => {
-    history.push(newState);
-});
-
-
-function hide() {
-    showModal.value = false;
-}
-
-const isShow = computed(() => showModal.value);
-
-watch(isShow, () => {
-    console.log(isShow.value);
-});
-
-export {
-    show,
-    hide,
-    isShow,
-};

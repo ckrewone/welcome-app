@@ -1,48 +1,102 @@
 <template>
-    <Modal>
-        <template v-slot:header >
+    <Modal v-if="isShow">
+        <template v-slot:header>
             Add page
         </template>
-        <template v-slot:body >
-            <div class="input-group input-group-sm p-2">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">Title:</span>
-                </div>
-                <input type="text" class="form-control" v-model="title"/>
+        <template v-slot:body>
+            <div class="form-group">
+                <label>
+                    Title
+                    <input type="text"
+                            class="form-control"
+                            v-model="title"
+                            :class="titleError ? 'is-invalid' : ''"
+                    />
+                    <div class="invalid-feedback">{{titleError}}</div>
+                </label>
             </div>
-            <div class="input-group input-group-sm p-2">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">Url:</span>
-                </div>
-                <input type="text" v-model="url" class="form-control"/>
+            <div class="form-group">
+                <label>
+                    Absolute url
+                    <input type="text"
+                           v-model="url"
+                           class="form-control"
+                           :class="urlError ? 'is-invalid' : ''"
+                    />
+                    <div class="invalid-feedback">{{urlError}}</div>
+                </label>
             </div>
+        </template>
+        <template v-slot:footer>
+            <button class="btn btn-primary" @click="addPage">Add</button>
         </template>
     </Modal>
 </template>
 
 <script>
     import Modal from '../Modal/Modal';
-    import { ref, watchEffect } from 'vue';
+    import {ref, computed} from 'vue';
+    import {getModal, pages} from '../../store/useStore';
+    import {MODAL_TYPES} from '../../../constants/StoreKeys';
+
     export default {
         components: {
-            Modal
+            Modal,
         },
         setup() {
             const title = ref('');
+            const titleError = ref(null);
             const url = ref('');
+            const urlError = ref(null);
 
-            watchEffect(() => {
-                console.log('title')
-                console.log(title)
-                console.log('url')
-                console.log(url)
-            });
+            async function addPage() {
+                if(await isValid()){
+                    addToList();
+                    getModal(MODAL_TYPES.ADD_PAGE).hide();
+                }
+            }
+
+            function addToList() {
+                const newItems = [...pages.value];
+                newItems.push({
+                    title: title.value,
+                    url: url.value,
+                });
+                pages.value = newItems;
+                title.value = '';
+                url.value = '';
+            }
+
+            async function isValid() {
+                urlError.value = null;
+                titleError.value = null;
+                if (!title.value) {
+                    titleError.value = 'Title must be defined';
+                }
+                if (title.value.length > 15) {
+                    titleError.value = 'Title is too long (max. 15 chars)';
+                }
+                if (!url.value) {
+                    urlError.value = 'Url must be defined';
+                }
+                if (!url.value.startsWith('http')) {
+                    urlError.value = 'Url must be absolute path';
+                }
+
+                return !(urlError.value || titleError.value);
+
+
+            }
 
             return {
                 title,
-                url
-            }
-        }
+                url,
+                isShow: computed(() => getModal(MODAL_TYPES.ADD_PAGE).isShow),
+                addPage,
+                titleError,
+                urlError
+            };
+        },
     };
 </script>
 

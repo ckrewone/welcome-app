@@ -1,17 +1,17 @@
 <template>
     <div class="container">
         <div class="row">
-            <PageItem v-for="(item, i) in items" :item="item" :key="i"/>
+            <PageItem v-for="(item, i) in pages" :item="item" :key="i"/>
             <AddBlock/>
         </div>
     </div>
 </template>
 
 <script>
-    import {ref, onMounted, watch} from 'vue';
-    import {LOCAL_STORAGE_KEY} from '../../../constants/LocalStorageKeys';
+    import {ref} from 'vue';
     import PageItem from './PageItem';
     import AddBlock from './AddBlock';
+    import {pages} from '../../store/useStore';
 
     export default {
         components: {
@@ -19,53 +19,14 @@
             AddBlock
         },
         setup() {
-            let items = ref([
-                {
-                    title: 'Google',
-                    url: 'https://www.google.pl',
-                },
-                {
-                    title: '9gag',
-                    url: 'https://9gag.com',
-                },
-                {
-                    title: 'FB',
-                    url: 'https://fb.com',
-                },
-            ]);
 
-            onMounted(() => {
-                const savedItems = window.localStorage.getItem(LOCAL_STORAGE_KEY.ITEMS);
-                if (savedItems) {
-                    items.value = savedItems.split('|').map(el => JSON.parse(el));
-                }
-            });
-
-            watch(items, (val) => {
-                window.localStorage.setItem(LOCAL_STORAGE_KEY.ITEMS, val.map(el => JSON.stringify(el)).join('|'));
-            });
-
-            let activeAdding = ref(false);
             let addTitle = ref('');
             let addUrl = ref('');
             let activeBlock = ref({});
 
-            function addToList() {
-                activeAdding.value = false;
-                const newItems = [...items.value];
-                newItems.push({
-                    title: addTitle.value,
-                    url: addUrl.value,
-                });
-                items.value = newItems;
-                addTitle.value = '';
-                addUrl.value = '';
-            }
 
             return {
-                items,
-                activeAdding,
-                addToList,
+                pages,
                 addUrl,
                 addTitle,
                 activeBlock,

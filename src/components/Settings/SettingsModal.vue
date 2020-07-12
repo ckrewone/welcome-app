@@ -22,7 +22,7 @@
             </div>
             <div class="form-group">
                 <label>Wallpaper brightness:</label>
-                <input type="range" class="form-control-range" @change="setBrightness">
+                <input type="range" class="form-control-range" v-model="brightness">
             </div>
             <input
                     type="text"
@@ -39,10 +39,10 @@
 </template>
 
 <script>
-    import {customRef, onMounted} from 'vue';
-    import {useStore} from 'vuex';
+    import {computed} from 'vue';
     import Modal from '../Modal/Modal';
-    import {isShow, hide} from '../../store/useModal';
+    import {getModal, wallpaperTag, wallpaperColor, city, brightness} from '../../store/useStore';
+    import {MODAL_TYPES} from '../../../constants/StoreKeys';
 
     export default {
         components: {
@@ -50,49 +50,13 @@
         },
         setup() {
 
-            onMounted( () => {
-                setInterval(() => {
-                    console.log(isShow.value);
-                }, 1000);
-            })
-
-            let wallpaperTag = customRef(() => ({
-                set(value) {
-                    store.commit('SET_WALLPAPER_TAG', value);
-                },
-                get() {
-                    return store.state.wallpaperTag;
-                },
-            }));
-            let wallpaperColor = customRef(() => ({
-                set(value) {
-                    store.commit('SET_WALLPAPER_COLOR', value);
-                },
-                get() {
-                    return store.state.wallpaperColor;
-                },
-            }));
-            let city = customRef(() => ({
-                set(value) {
-                    store.commit('SET_CITY', value);
-                },
-                get() {
-                    return store.state.city;
-                },
-            }));
-            const store = useStore();
-
-            function setBrightness(e) {
-                store.commit('SET_BRIGHTNESS', e.target.value/100);
-            }
-
             return {
                 wallpaperColor,
                 wallpaperTag,
-                setBrightness,
+                brightness,
                 city,
-                isShow,
-                hide
+                isShow: computed(() => getModal(MODAL_TYPES.SETTINGS).isShow),
+                hide: getModal(MODAL_TYPES.SETTINGS).hide
             };
         },
     };

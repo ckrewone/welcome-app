@@ -14,9 +14,10 @@
                     <i class="fa fa-cog rotate"></i>
                 </div>
             </div>
-            <img class="wallpaper" :src="wallpaper" :style="brightness" @load="setLoader(false)"/>
+            <img class="wallpaper" :src="wallpaper" :style="wallpaperBrightness" @load="setLoader(false)"/>
             <Loader :loader="loader"/>
             <WallpapersSettingsModal/>
+            <AddPageItemModal/>
         </div>
     </div>
 </template>
@@ -27,12 +28,14 @@
     import Loader from '../Loader/Loader';
     import WallpapersSettingsModal from '../Settings/SettingsModal';
     import useLoader from '../Loader/useLoader';
-    import {useStore} from 'vuex';
     import {LOCAL_STORAGE_KEY} from '../../../constants/LocalStorageKeys';
-    import {show} from '../../store/useModal';
+    import {brightness, getModal} from '../../store/useStore';
+    import {MODAL_TYPES} from '../../../constants/StoreKeys';
+    import AddPageItemModal from '../Block/AddPageItemModal';
 
     export default {
         components: {
+            AddPageItemModal,
             Loader,
             WallpapersSettingsModal,
         },
@@ -42,9 +45,8 @@
             const wallpaper = ref(null);
             const wallpaperArray = ref([]);
             const index = ref(0);
-            const store = useStore();
-            const fetchWallpapers = computed(() => store.state.fetchWallpapers);
-            const brightness = computed(() => ({opacity: store.state.brightness}));
+            const fetchWallpapers = computed(() => '');
+            const wallpaperBrightness = computed(()=> ({opacity: brightness.value/100}));
             onMounted(() => {
                 setLoader(true);
                 const savedWallpaper = window.localStorage.getItem(LOCAL_STORAGE_KEY.WALLPAPER);
@@ -55,20 +57,16 @@
                 }
             });
 
-            // function showWallpapersSettings() {
-            //     store.commit('SET_SHOW_MODAL', true);
-            // }
-
             watch(wallpaper, (val) => {
                 window.localStorage.setItem(LOCAL_STORAGE_KEY.WALLPAPER, val);
             });
+
 
             function setWallpaper() {
                 searchWallpapers().then(json => {
                     if (json.data && json.data.length) {
                         wallpaperArray.value = json.data;
                         wallpaper.value = json.data[index.value].path;
-                        store.commit('SET_FETCH_WALLPAPERS', false);
                     } else {
                         console.log('Empty response');
                     }
@@ -91,8 +89,8 @@
                 wallpaper,
                 reload,
                 loader,
-                show,
-                brightness,
+                show: getModal(MODAL_TYPES.SETTINGS).show,
+                wallpaperBrightness,
                 setLoader,
             };
         },
