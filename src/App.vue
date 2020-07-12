@@ -14,7 +14,7 @@
 </template>
 
 <script>
-    import PageList from './components/PageList.vue'
+    import PageList from './components/Block/BlockList.vue'
     import Wallpapers from './components/Wallpapers/Wallpapers';
     import WeatherView from './components/Weather/WeatherView';
     import TimeWidget from './components/Time/TimeWidget';

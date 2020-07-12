@@ -4,22 +4,9 @@
             <div
                     v-for="(item, i) in items"
                     :key="i"
-                    class="col-3 mt-2 mb-2"
+                    class="col-2 mt-2 mb-2"
             >
-                <div
-                        class="hover pointer"
-                        @mouseover="active(item.url)"
-                        @mouseout="deactive(item.url)"
-                        @click="redirect(item.url)"
-                />
-                <div
-                        class="rounded-sm list-item list-item--transition"
-                        :class="activeBlock[item.url] ? 'shadow-lg selected' : ''"
-                        @click="redirect(item.url)"
-                >
-                    <div class="list-item__title">{{ item.title }}</div>
-                    <img class="image" :src="getIcon(item.url)"/>
-                </div>
+                <PageItem :item="item"/>
             </div>
             <div class="col-3 mt-2 mb-2">
                 <div
@@ -59,9 +46,13 @@
 
 <script>
     import {ref, onMounted, watch} from 'vue';
-    import {LOCAL_STORAGE_KEY} from '../../constants/LocalStorageKeys';
+    import {LOCAL_STORAGE_KEY} from '../../../constants/LocalStorageKeys';
+    import PageItem from './PageItem';
 
     export default {
+        components: {
+            PageItem,
+        },
         setup() {
             let items = ref([
                 {
@@ -71,6 +62,10 @@
                 {
                     title: '9gag',
                     url: 'https://9gag.com',
+                },
+                {
+                    title: 'FB',
+                    url: 'https://fb.com',
                 },
             ]);
 
@@ -102,62 +97,19 @@
                 addUrl.value = '';
             }
 
-            function getIcon(url) {
-                return url + '/favicon.ico';
-            }
-
-            function redirect(url) {
-                window.location.href = url;
-            }
-
-            function getBackground(url) {
-                return `background: url("${getIcon(url)}"); filter: blur(15px);`;
-            }
-
-            function active(url) {
-                activeBlock.value[url] = true;
-            }
-
-            function deactive(url) {
-                activeBlock.value[url] = false;
-            }
-
             return {
                 items,
                 activeAdding,
                 addToList,
                 addUrl,
                 addTitle,
-                getIcon,
-                redirect,
-                getBackground,
-                active,
                 activeBlock,
-                deactive
             };
         },
     };
 </script>
 
 <style scoped>
-    .list-item {
-        height: 150px;
-        background: rgba(255, 255, 255, .3);
-    }
-
-    .list-item--transition {
-        transition: all .2s ease-in-out;
-    }
-
-    .list-item__title {
-        font-size: 3rem;
-        color: rgba(0,0,0,.8);
-        padding-top: 10px;
-    }
-
-    .selected {
-        background: rgba(255,255,255,.5);
-    }
     .add-item {
         font-size: 5rem;
         color: rgba(0,0,0,.8);
@@ -167,11 +119,6 @@
         -ms-transform: translate(-50%, -50%);
         transform: translate(-50%, -50%);
         margin: 0;
-    }
-
-    .image {
-        margin-top: 10px;
-        height: 24px;
     }
 
     .pointer {
