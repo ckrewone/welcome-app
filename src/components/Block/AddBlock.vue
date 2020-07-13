@@ -1,7 +1,7 @@
 <template>
     <BlockItem :on-click-block="show">
         <template v-slot:default>
-            <div class="plus">+</div>
+            <div class="test"><i class="fa fa-plus plus"/></div>
         </template>
     </BlockItem>
 </template>
@@ -25,6 +25,8 @@
 
 <style>
     .plus {
-        font-size: 3rem;
+        position: fixed;
+        font-size: 30px;
+        transform: translate(-50%, 50%);
     }
 </style>

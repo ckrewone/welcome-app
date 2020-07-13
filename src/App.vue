@@ -3,10 +3,12 @@
         <Wallpapers/>
         <div class="container">
             <div class="row">
-                <div class="col-md-2 offset-md-4">
+                <div class="col-md-2 offset-md-4 col-sm-3 offset-sm-3">
                     <WeatherView/>
                 </div>
-                <TimeWidget/>
+                <div class="col-sm-6 col-xs-12">
+                    <TimeWidget/>
+                </div>
             </div>
         </div>
         <PageList/>
@@ -37,7 +39,7 @@
 </script>
 
 <style>
-    #app {
+    html {
         font-family: Avenir, Helvetica, Arial, sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
@@ -45,5 +47,25 @@
         color: #2c3e50;
         margin-top: 60px;
         overflow: hidden;
+        background: black;
+    }
+
+
+    @media (min-width: 768px) {
+        html {
+            font-size: 12px;
+        }
+    }
+
+    @media (min-width: 992px) {
+        html {
+            font-size: 14px;
+        }
+    }
+
+    @media (min-width: 1200px) {
+        html {
+            font-size: 16px;
+        }
     }
 </style>

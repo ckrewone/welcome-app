@@ -25,7 +25,7 @@
     import useFetchWallpaper from './useFetchWallpapers';
     import Loader from '../Loader/Loader';
     import useLoader from '../Loader/useLoader';
-    import {brightness, getModal, wallpaper} from '../../store/useStore';
+    import {blurValue, brightness, getModal, wallpaper} from '../../store/useStore';
     import {MODAL_TYPES} from '../../../constants/StoreKeys';
 
     export default {
@@ -38,7 +38,11 @@
             const wallpaperArray = ref([]);
             const index = ref(0);
             const fetchWallpapers = computed(() => '');
-            const wallpaperBrightness = computed(()=> ({opacity: brightness.value/100}));
+            const wallpaperBrightness = computed(()=> ({
+                opacity: brightness.value/100,
+                filter: 'blur(' + blurValue.value/5 +'px)',
+                color: '#fff'
+            }));
             onMounted(() => {
                 setLoader(true);
                 if (!wallpaper) {

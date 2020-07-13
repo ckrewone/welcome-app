@@ -3,5 +3,6 @@ export const LOCAL_STORAGE_KEY = {
     WALLPAPER_TAG: 'wallpaper_tag',
     CITY: 'city',
     PAGES: 'page_items',
-    BRIGHTNESS: 'brightness'
+    BRIGHTNESS: 'brightness',
+    BLUR: 'blur'
 };

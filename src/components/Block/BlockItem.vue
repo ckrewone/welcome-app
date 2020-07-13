@@ -1,6 +1,6 @@
 <template>
     <div
-            class="pointer col-md-3 list-item"
+            class="pointer col-md-3 col-sm-6 list-item"
             :class="activeBlock ? 'list-item--hover' : ''"
     >
         <div
@@ -10,13 +10,13 @@
                 @click="onClickBlock"
         />
         <div
-                class="rounded-sm list-item__base list-item--transition"
+                class="rounded-sm list-item__base list-item--transition row"
                 :class="activeBlock ? 'shadow-lg selected' : ''"
         >
-            <div class="list-item__main">
+            <div class="list-item__main col-12 mt-3">
                 <slot/>
             </div>
-            <div class="list-item__title"
+            <div class="list-item__title col-md-12"
                  :class="activeBlock ? 'list-item__title--hover' : ''"
             >
                 <slot name="footer"/>
@@ -50,15 +50,17 @@
 <style>
     .list-item{
         transition: padding .2s ease-in-out;
-        padding: 0px 15px 0px 15px;
+        padding: 0px 25px 0px 25px;
+        margin-top: 10px;
+        text-align: center;
     }
 
     .list-item--hover {
-        padding: 0px 10px 0px 10px;
+        padding: 0px 15px 0px 15px;
     }
 
     .list-item__base {
-        height: 15vh;
+        height: 10vh;
         background: rgba(255, 255, 255, .3);
     }
 
@@ -69,7 +71,7 @@
     .list-item__title {
         transition: font-size .2s ease-in-out;
         font-size: 1.5rem;
-        padding-top: 10px;
+        text-align: center;
         color: rgba(0, 0, 0, .8);
     }
 
@@ -78,10 +80,6 @@
     }
 
     .list-item__main {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
     }
 
     .selected {

@@ -13,6 +13,7 @@ const wallpaper = ref('');
 const wallpaperColor = ref('');
 const city = ref('Lodz');
 const brightness = ref(50);
+const blurValue = ref(0);
 const pages = ref([
     {
         title: 'Google',
@@ -31,6 +32,7 @@ function onCreate() {
     wallpaper.value = getKey(LOCAL_STORAGE_KEY.WALLPAPER) ? getKey(LOCAL_STORAGE_KEY.WALLPAPER) : 'abstract';
     city.value = getKey(LOCAL_STORAGE_KEY.CITY) ? getKey(LOCAL_STORAGE_KEY.CITY) : 'Lodz';
     brightness.value = getKey(LOCAL_STORAGE_KEY.BRIGHTNESS) ? getKey(LOCAL_STORAGE_KEY.BRIGHTNESS) : 50;
+    blurValue.value = getKey(LOCAL_STORAGE_KEY.BLUR) ? getKey(LOCAL_STORAGE_KEY.BLUR) : 0;
 
     const savedItems = getKey(LOCAL_STORAGE_KEY.PAGES);
     if (savedItems) {
@@ -61,6 +63,10 @@ watch(brightness, (newVal) => {
     setKey(LOCAL_STORAGE_KEY.BRIGHTNESS, newVal);
 });
 
+watch(blurValue, (newVal) => {
+    setKey(LOCAL_STORAGE_KEY.BLUR, newVal);
+});
+
 function getModal(modalType) {
     return modal.value[modalType];
 }
@@ -75,5 +81,6 @@ export {
     city,
     brightness,
     pages,
-    wallpaper
+    wallpaper,
+    blurValue
 }

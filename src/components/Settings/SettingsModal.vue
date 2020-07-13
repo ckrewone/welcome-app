@@ -24,6 +24,10 @@
                 <label>Wallpaper brightness:</label>
                 <input type="range" class="form-control-range col-form-label-lg" v-model="brightness">
             </div>
+            <div class="form-group">
+                <label>Wallpaper blur:</label>
+                <input type="range" class="form-control-range col-form-label-lg" v-model="blurValue">
+            </div>
             <input
                     type="text"
                     class="form-control mt-2 "
@@ -41,7 +45,7 @@
 <script>
     import {computed} from 'vue';
     import Modal from '../Modal/Modal';
-    import {getModal, wallpaperTag, wallpaperColor, city, brightness} from '../../store/useStore';
+    import {getModal, wallpaperTag, wallpaperColor, city, brightness, blurValue} from '../../store/useStore';
     import {MODAL_TYPES} from '../../../constants/StoreKeys';
 
     export default {
@@ -55,6 +59,7 @@
                 wallpaperTag,
                 brightness,
                 city,
+                blurValue,
                 isShow: computed(() => getModal(MODAL_TYPES.SETTINGS).isShow),
                 hide: getModal(MODAL_TYPES.SETTINGS).hide,
                 type: MODAL_TYPES.SETTINGS

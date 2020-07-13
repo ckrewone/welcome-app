@@ -3,8 +3,8 @@
         <transition name="zoom">
             <div class="container" v-if="isShow">
                 <div class="row">
-                    <div class="col-md-4"/>
-                    <div class="col-md-4">
+                    <div class="col-md-3"/>
+                    <div class="col-md-6">
                         <div class="custom-modal__base">
                             <div class="custom-modal__header">
                                 <slot name="header">
@@ -59,6 +59,7 @@
         top: 0;
         height: 100%;
         width: 100%;
+        text-align: center;
     }
 
     .custom-modal__background {
@@ -80,16 +81,17 @@
     }
 
     .custom-modal__body {
-        padding-top: 1rem;
+        padding-top: 2rem;
         padding-bottom: 1rem;
+        font-size: 1.5rem;
     }
 
     .custom-modal__footer {
-        padding-top: 1rem;
+        padding-top: 2rem;
     }
 
     .custom-modal__header {
-        font-size: 2rem;
+        font-size: 3rem;
     }
 
 </style>

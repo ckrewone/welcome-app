@@ -37,6 +37,7 @@
     }
 
     .time__content {
-        font-size: 6rem
+        font-size: 5rem;
+        text-align: center;
     }
 </style>

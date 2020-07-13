@@ -1,9 +1,9 @@
 <template>
     <div class="weather">
-        <h1 v-if="weather.name">{{weather.name}}</h1>
-        <h2 v-if="weather.main">{{(weather.main.temp - 273.15).toFixed(1)}}°C</h2>
+        <div class="weather__icon-reload" @click="updateWeatcher"><i class="fa fa-refresh pointer rotate weather__refresh"></i></div>
+        <h2 v-if="weather.name">{{weather.name}}</h2>
+        <h3 v-if="weather.main">{{(weather.main.temp - 273.15).toFixed(1)}}°C</h3>
         <h5 v-if="weather.weather">{{weather.weather[0].main}}</h5>
-        <div class="reload" @click="updateWeatcher"><i class="fa fa-refresh pointer rotate weather__refresh"></i></div>
     </div>
 </template>
 
@@ -55,8 +55,14 @@
     .weather {
         position: relative;
         color: white;
-        margin: 20px;
         z-index: 300;
+        margin-top: 20px;
+        text-align: center;
+    }
+    .weather__icon-reload {
+        position: relative;
+        top: 0;
+        right: 0;
     }
     .weather__refresh {
         position: absolute;
