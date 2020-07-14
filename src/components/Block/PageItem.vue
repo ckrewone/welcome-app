@@ -27,7 +27,7 @@
             }
 
             function redirect() {
-                window.location.href = props.item.url;
+                window.open(props.item.url);
             }
 
             return {

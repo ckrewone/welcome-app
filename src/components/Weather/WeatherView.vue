@@ -55,7 +55,7 @@
     .weather {
         position: relative;
         color: white;
-        z-index: 300;
+        z-index: 200;
         margin-top: 20px;
         text-align: center;
     }

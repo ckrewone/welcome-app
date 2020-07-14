@@ -60,7 +60,7 @@
     }
 
     .list-item__base {
-        height: 10vh;
+        height: 15vh;
         background: rgba(255, 255, 255, .3);
     }
 

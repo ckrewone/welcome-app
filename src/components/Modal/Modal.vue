@@ -4,24 +4,22 @@
             <div class="container" v-if="isShow">
                 <div class="row">
                     <div class="col-md-3"/>
-                    <div class="col-md-6">
-                        <div class="custom-modal__base">
-                            <div class="custom-modal__header">
-                                <slot name="header">
-                                    Header
-                                </slot>
-                            </div>
-                            <div class="divider"></div>
-                            <div class="custom-modal__body">
-                                <slot name="body">
-                                    This is default body.
-                                </slot>
-                            </div>
-                            <div class="custom-modal__footer">
-                                <slot name="footer">
-                                    This is default footer
-                                </slot>
-                            </div>
+                    <div class="col-md-6 custom-modal__base">
+                        <div class="custom-modal__header">
+                            <slot name="header">
+                                Header
+                            </slot>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="custom-modal__body">
+                            <slot name="body">
+                                This is default body.
+                            </slot>
+                        </div>
+                        <div class="custom-modal__footer">
+                            <slot name="footer">
+                                This is default footer
+                            </slot>
                         </div>
                     </div>
                 </div>
@@ -70,7 +68,7 @@
     .custom-modal__base {
         position: relative;
         z-index: 201;
-        margin-top: 50%;
+        margin-top: 10%;
         padding: 30px;
         border-radius: 10px;
         background: #fff;
