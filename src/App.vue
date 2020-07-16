@@ -1,5 +1,6 @@
 <template>
     <div id="app">
+        <Slider/>
         <Wallpapers/>
         <div class="container">
             <div class="row">
@@ -24,6 +25,8 @@
     import TimeWidget from './components/Time/TimeWidget';
     import SettingsModal from './components/Settings/SettingsModal';
     import AddPageItemModal from './components/Block/AddPageItemModal';
+    import Slider from './components/Slider';
+
 
     export default {
         name: 'App',
@@ -34,6 +37,7 @@
             TimeWidget,
             SettingsModal,
             AddPageItemModal,
+            Slider
         },
     };
 </script>
