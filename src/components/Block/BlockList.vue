@@ -1,14 +1,14 @@
 <template>
     <div class="container">
         <div class="row">
-            <PageItem v-for="(item, i) in pages" :item="item" :key="i"/>
-            <AddBlock/>
+            <PageItem v-for="(item, i) in showPages" :item="item" :key="i"/>
+            <AddBlock v-if="showAdd"/>
         </div>
     </div>
 </template>
 
 <script>
-    import {ref} from 'vue';
+    import {ref, computed} from 'vue';
     import PageItem from './PageItem';
     import AddBlock from './AddBlock';
     import {pages} from '../../store/useStore';
@@ -18,18 +18,21 @@
             PageItem,
             AddBlock
         },
-        setup() {
-
+        props: [ 'pageIndex'],
+        setup(props) {
+            let showPages = computed(() => ([...pages.value].splice((12 * props.pageIndex), 12)));
+            let showAdd = ref(showPages.value.length < 11)
             let addTitle = ref('');
             let addUrl = ref('');
             let activeBlock = ref({});
 
 
             return {
-                pages,
+                showPages,
                 addUrl,
                 addTitle,
                 activeBlock,
+                showAdd
             };
         },
     };

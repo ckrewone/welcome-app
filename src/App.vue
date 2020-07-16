@@ -1,8 +1,7 @@
 <template>
     <div id="app">
-        <Slider/>
         <Wallpapers/>
-        <div class="container">
+        <div class="container mb-5">
             <div class="row">
                 <div class="col-md-2 offset-md-4 col-sm-3 offset-sm-3">
                     <WeatherView/>
@@ -12,7 +11,7 @@
                 </div>
             </div>
         </div>
-        <PageList/>
+        <Slider/>
         <SettingsModal/>
         <AddPageItemModal/>
     </div>
@@ -26,7 +25,7 @@
     import SettingsModal from './components/Settings/SettingsModal';
     import AddPageItemModal from './components/Block/AddPageItemModal';
     import Slider from './components/Slider';
-
+    /* eslint-disable */
 
     export default {
         name: 'App',

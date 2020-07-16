@@ -1,6 +1,6 @@
 <template>
     <div class="weather">
-        <div class="weather__icon-reload" @click="updateWeatcher"><i class="fa fa-refresh pointer rotate weather__refresh"></i></div>
+        <div class="weather__icon-reload" @click="updateWeather"><i class="fa fa-refresh pointer rotate weather__refresh"></i></div>
         <h2 v-if="weather.name">{{weather.name}}</h2>
         <h3 v-if="weather.main">{{(weather.main.temp - 273.15).toFixed(1)}}°C</h3>
         <h5 v-if="weather.weather">{{weather.weather[0].main}}</h5>
@@ -33,11 +33,11 @@
             });  // example
 
             onMounted(() => {
-                // updateWeatcher();
-                setInterval(() => updateWeatcher(), 1000 * 60 * 60 * 1); // every 2 hpurs
+                updateWeather();
+                setInterval(() => updateWeather(), 1000 * 60 * 60 * 1); // every 2 hpurs
             });
 
-            function updateWeatcher() {
+            function updateWeather() {
                 fetchWeather(city.value).then(res => {
                     weather.value = res;
                 });
@@ -45,7 +45,7 @@
 
             return {
                 weather,
-                updateWeatcher
+                updateWeather
             };
         },
     };
@@ -55,12 +55,12 @@
     .weather {
         position: relative;
         color: white;
-        z-index: 200;
         margin-top: 20px;
         text-align: center;
     }
     .weather__icon-reload {
         position: relative;
+        z-index: 200;
         top: 0;
         right: 0;
     }

@@ -45,12 +45,13 @@
             }));
             onMounted(() => {
                 setLoader(true);
-                if (!wallpaper) {
+                if (!wallpaper.value) {
                     setWallpaper();
                 }
             });
 
             function setWallpaper() {
+                wallpaper.value = null;
                 searchWallpapers().then(json => {
                     if (json.data && json.data.length) {
                         wallpaperArray.value = json.data;
@@ -74,12 +75,12 @@
             }
 
             return {
-                wallpaper,
                 reload,
                 loader,
                 show: getModal(MODAL_TYPES.SETTINGS).show,
                 wallpaperBrightness,
                 setLoader,
+                wallpaper
             };
         },
     };

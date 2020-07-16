@@ -22,6 +22,61 @@ const pages = ref([
     {
         title: '9gag',
         url: 'https://9gag.com',
+    },
+    {
+        title: 'Google1',
+        url: 'https://www.google.pl',
+    },
+    {
+        title: '9gag1',
+        url: 'https://9gag.com',
+    },
+    {
+        title: 'Google2',
+        url: 'https://www.google.pl',
+    },
+    {
+        title: '9gag2',
+        url: 'https://9gag.com',
+    },
+    {
+        title: 'Google3',
+        url: 'https://www.google.pl',
+    },
+    {
+        title: '9gag3',
+        url: 'https://9gag.com',
+    },    {
+        title: 'Google4',
+        url: 'https://www.google.pl',
+    },
+    {
+        title: '9gag4',
+        url: 'https://9gag.com',
+    },
+    {
+        title: 'Google5',
+        url: 'https://www.google.pl',
+    },
+    {
+        title: '9gag5',
+        url: 'https://9gag.com',
+    },
+    {
+        title: 'Google6',
+        url: 'https://www.google.pl',
+    },
+    {
+        title: '9gag6',
+        url: 'https://9gag.com',
+    },
+    {
+        title: 'Google7',
+        url: 'https://www.google.pl',
+    },
+    {
+        title: '9gag7',
+        url: 'https://9gag.com',
     }
 ]);
 
