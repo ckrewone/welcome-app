@@ -2,7 +2,8 @@
     <div
             class="pointer col-md-3 col-sm-6 list-item"
             :class="activeBlock ? 'list-item--hover' : ''"
-    >
+   >
+        <slot name="header"/>
         <div
                 class="hover"
                 @mouseover="activeBlock = true"

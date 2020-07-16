@@ -116,14 +116,12 @@
     /* Animation */
     @-webkit-keyframes rotate {
         to {
-            -webkit-transform: rotate(360deg);
             transform: rotate(360deg);
         }
     }
 
     @keyframes rotate {
         to {
-            -webkit-transform: rotate(360deg);
             transform: rotate(360deg);
         }
     }

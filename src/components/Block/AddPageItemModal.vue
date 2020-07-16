@@ -38,6 +38,7 @@
     import {ref, computed} from 'vue';
     import {getModal, pages} from '../../store/useStore';
     import {MODAL_TYPES} from '../../../constants/StoreKeys';
+    import {v4} from 'uuid';
 
     export default {
         components: {
@@ -59,6 +60,7 @@
             function addToList() {
                 const newItems = [...pages.value];
                 newItems.push({
+                    id: v4(),
                     title: title.value,
                     url: url.value,
                 });

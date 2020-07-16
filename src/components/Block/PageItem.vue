@@ -1,5 +1,8 @@
 <template>
     <BlockItem :on-click-block="redirect">
+        <template v-slot:header>
+            <div class="delete-page" @click="deletePage"><i class="fa fa-times"></i></div>
+        </template>
         <template v-slot:default>
             <img class="image" :src="getIcon()" alt=""/>
         </template>
@@ -9,6 +12,7 @@
 
 <script>
     import BlockItem from './BlockItem';
+    import {pages} from '../../store/useStore';
 
     export default {
         props: {
@@ -26,6 +30,12 @@
                 return props.item.url + '/favicon.ico';
             }
 
+            function deletePage() {
+                const newPages = [...pages.value];
+                newPages.splice(newPages.findIndex(el => el.id === props.item.id), 1);
+                pages.value = newPages;
+            }
+
             function redirect() {
                 window.open(props.item.url);
             }
@@ -33,6 +43,7 @@
             return {
                 getIcon,
                 redirect,
+                deletePage
             };
         },
     };
@@ -44,5 +55,16 @@
     }
     .pointer {
         cursor: pointer;
+    }
+    .delete-page {
+        z-index: 201;
+        color: rgba(0,0,0,0.2);
+        position: absolute;
+        top: 3%;
+        right: 10%;
+        transition: color .5s ease-in-out;
+    }
+    .delete-page:hover {
+        color: rgba(0,0,0,0.5);
     }
 </style>
