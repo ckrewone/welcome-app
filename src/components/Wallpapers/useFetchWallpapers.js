@@ -5,7 +5,7 @@ export default function useFetchWallpaper() {
     const { fetch } = useFetch();
     const config = {
         wallpapers: {
-            url : "https://cors-anywhere.herokuapp.com/https://wallhaven.cc/api/v1/",
+            url : "https://cors-anywhere.herokuapp.com/https://wallhaven.cc/api/v1",
             apiKey: "nOhRnwoazI2R4KhMGrImVaAsYke6nfIe"
         }
     };

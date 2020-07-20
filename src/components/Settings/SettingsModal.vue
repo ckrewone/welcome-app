@@ -1,14 +1,14 @@
 <template>
     <Modal :modal-type="type">
         <template v-slot:header>
-            Settings
+            <h2>Settings</h2>
         </template>
         <template v-slot:body>
             <div class="form-group">
                 <label>Wallpaper tag:</label>
                 <input
                         type="text"
-                        class="form-control col-form-label-lg"
+                        class="form-control col-form-label-sm"
                         v-model="wallpaperTag"
                 >
             </div>
@@ -16,17 +16,17 @@
                 <label>Your city:</label>
                 <input
                         type="text"
-                        class="form-control col-form-label-lg"
+                        class="form-control col-form-label-sm"
                         v-model="city"
                 >
             </div>
             <div class="form-group">
                 <label>Wallpaper brightness:</label>
-                <input type="range" class="form-control-range col-form-label-lg" v-model="brightness">
+                <input type="range" class="form-control-range col-form-label-sm" v-model="brightness">
             </div>
             <div class="form-group">
                 <label>Wallpaper blur:</label>
-                <input type="range" class="form-control-range col-form-label-lg" v-model="blurValue">
+                <input type="range" class="form-control-range col-form-label-sm" v-model="blurValue">
             </div>
             <input
                     type="text"
@@ -67,14 +67,3 @@
         },
     };
 </script>
-
-<style>
-    .fade-enter-active, .fade-leave-active {
-        transition: opacity .5s;
-    }
-
-    .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */
-    {
-        opacity: 0;
-    }
-</style>

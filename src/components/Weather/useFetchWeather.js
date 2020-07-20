@@ -2,7 +2,7 @@ import useFetch from '../Utils/useFetch';
 
 export default function useFetchWeather() {
     const { fetch } = useFetch();
-    const url = 'https://community-open-weather-map.p.rapidapi.com/weather?id=2172797&units=%22metric%22';
+    const url = 'https://cors-anywhere.herokuapp.com/https://community-open-weather-map.p.rapidapi.com/weather?id=2172797&units=%22metric%22';
     const options = {
         method: 'GET',
         headers: {

@@ -10,6 +10,7 @@ const modal = ref({
 });
 const wallpaperTag = ref('abstract');
 const wallpaper = ref('');
+const isWallpaperChanged = ref(false);
 const wallpaperColor = ref('');
 const city = ref('Lodz');
 const brightness = ref(50);
@@ -55,6 +56,7 @@ watch(wallpaper, (newVal) => {
 
 watch(wallpaperTag, (newVal) => {
     setKey(LOCAL_STORAGE_KEY.WALLPAPER_TAG, newVal);
+    isWallpaperChanged.value = true;
 });
 
 watch(city, (newVal) => {
@@ -84,5 +86,6 @@ export {
     brightness,
     pages,
     wallpaper,
-    blurValue
+    blurValue,
+    isWallpaperChanged
 }

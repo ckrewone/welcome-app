@@ -5,26 +5,22 @@
         </template>
         <template v-slot:body>
             <div class="form-group">
-                <label>
-                    Title
+              <label>Title</label>
                     <input type="text"
-                            class="form-control col-form-label-lg"
+                            class="form-control col-form-label-sm"
                             v-model="title"
                             :class="titleError ? 'is-invalid' : ''"
                     />
                     <div class="invalid-feedback">{{titleError}}</div>
-                </label>
             </div>
             <div class="form-group">
-                <label>
-                    Absolute url
+              <label>Absolute url: (i.e. https://www.google.pl)</label>
                     <input type="text"
                            v-model="url"
-                           class="form-control col-form-label-lg"
+                           class="form-control col-form-label-sm"
                            :class="urlError ? 'is-invalid' : ''"
                     />
                     <div class="invalid-feedback">{{urlError}}</div>
-                </label>
             </div>
         </template>
         <template v-slot:footer>

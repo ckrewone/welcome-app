@@ -3,12 +3,12 @@
         <div class="wallpaper brightness"></div>
         <div class="wallpaper">
             <div class="wallpaper__button-group">
-                <div class="btn btn-lg btn-outline-primary wallpaper__button"
+                <div class="btn btn-md btn-outline-light wallpaper__button"
                      @click="reload"
                 >
                     <i class="fa fa-refresh rotate"></i>
                 </div>
-                <div class="btn btn-lg btn-outline-primary wallpaper__button"
+                <div class="btn btn-md btn-outline-light wallpaper__button"
                      @click="show"
                 >
                     <i class="fa fa-cog rotate"></i>
@@ -25,7 +25,7 @@
     import useFetchWallpaper from './useFetchWallpapers';
     import Loader from '../Loader/Loader';
     import useLoader from '../Loader/useLoader';
-    import {blurValue, brightness, getModal, wallpaper} from '../../store/useStore';
+    import {blurValue, brightness, getModal, wallpaper, isWallpaperChanged} from '../../store/useStore';
     import {MODAL_TYPES} from '../../../constants/StoreKeys';
 
     export default {
@@ -37,11 +37,9 @@
             const {setLoader, loader} = useLoader();
             const wallpaperArray = ref([]);
             const index = ref(0);
-            const fetchWallpapers = computed(() => '');
             const wallpaperBrightness = computed(()=> ({
                 opacity: brightness.value/100,
                 filter: 'blur(' + blurValue.value/5 +'px)',
-                color: '#fff'
             }));
             onMounted(() => {
                 setLoader(true);
@@ -56,6 +54,7 @@
                     if (json.data && json.data.length) {
                         wallpaperArray.value = json.data;
                         wallpaper.value = json.data[index.value].path;
+                        isWallpaperChanged.value = false;
                     } else {
                         console.log('Empty response');
                     }
@@ -64,7 +63,7 @@
 
             function reload() {
                 setLoader(true);
-                if (index.value < wallpaperArray.value.length && !fetchWallpapers.value) {
+                if (index.value < wallpaperArray.value.length && !isWallpaperChanged.value) {
                     index.value++;
                     setTimeout(() => wallpaper.value = wallpaperArray.value[index.value].path, 200);
                 } else {
@@ -107,6 +106,11 @@
         top: 20px;
         right: 20px;
         z-index: 9999;
+        opacity: 0.2;
+    }
+
+    .wallpaper__button-group:hover {
+        opacity: 0.7;
     }
 
     .wallpaper__button {

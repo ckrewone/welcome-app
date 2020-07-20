@@ -1,6 +1,6 @@
 <template>
     <BlockItem :on-click-block="redirect">
-        <template v-slot:header>
+        <template v-slot:delete>
             <div class="delete-page" @click="deletePage"><i class="fa fa-times"></i></div>
         </template>
         <template v-slot:default>
@@ -57,14 +57,13 @@
         cursor: pointer;
     }
     .delete-page {
-        z-index: 201;
-        color: rgba(0,0,0,0.2);
-        position: absolute;
+        z-index: 101;
+        color: rgba(0,0,0,.4);
         top: 3%;
         right: 10%;
         transition: color .5s ease-in-out;
     }
     .delete-page:hover {
-        color: rgba(0,0,0,0.5);
+        color: rgba(0,0,0,0.8);
     }
 </style>

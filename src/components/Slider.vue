@@ -11,11 +11,11 @@
                 </div>
             </transition-group>
         </div>
-        <button class="btn btn-link carousel-control-prev" :disabled="slides.length === 1" role="button" @click="prevSlide">
+        <button class="btn btn-link carousel-control-prev" v-if="slides.length > 1" role="button" @click="prevSlide">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
         </button>
-        <button class="btn btn-link carousel-control-next" :disabled="slides.length === 1" role="button" @click="nextSlide">
+        <button class="btn btn-link carousel-control-next" v-if="slides.length > 1" role="button" @click="nextSlide">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
         </button>
@@ -86,7 +86,6 @@
     .carousel__slide {
         position: absolute;
         width: 100%;
-        color: aquamarine;
     }
     .carousel-control-next {
         z-index: 200;

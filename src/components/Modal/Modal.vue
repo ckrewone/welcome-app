@@ -1,7 +1,6 @@
 <template>
-    <div class="custom-modal">
-        <transition name="zoom">
-            <div class="container" v-if="isShow">
+    <div class="custom-modal" :class="isShow ? 'custom-modal--visible' : ''">
+            <div class="container">
                 <div class="row">
                     <div class="col-md-3"/>
                     <div class="col-md-6 custom-modal__base">
@@ -24,9 +23,7 @@
                     </div>
                 </div>
             </div>
-        </transition>
         <div class="custom-modal custom-modal__background"
-             v-if="isShow"
              @click="hide"
         >
         </div>
@@ -58,19 +55,35 @@
         height: 100%;
         width: 100%;
         text-align: center;
+        transition: opacity .1s ease-in, padding-top .1s ease-in-out;
+        opacity: 0;
+        padding-top: 20px;
+    }
+
+
+    .custom-modal--visible {
+      opacity: 1;
+      padding-top: 0;
+      z-index: 150;
     }
 
     .custom-modal__background {
-        opacity: 0;
+        top: 0;
+        left: 0;
+        position: absolute;
+        height: 100vh;
+        width: 100vw;
+        background: black;
+        opacity: 0.4;
         z-index: 200;
     }
 
     .custom-modal__base {
         position: relative;
         z-index: 201;
-        margin-top: 10%;
+        margin-top: 20px;
         padding: 30px;
-        border-radius: 10px;
+        border-radius: 5px;
         background: #fff;
     }
 
@@ -79,17 +92,16 @@
     }
 
     .custom-modal__body {
-        padding-top: 2rem;
-        padding-bottom: 1rem;
-        font-size: 1.5rem;
+        padding-top: 1rem;
+        padding-bottom: .7rem;
     }
 
     .custom-modal__footer {
-        padding-top: 2rem;
+        padding-top: 1rem;
     }
 
     .custom-modal__header {
-        font-size: 3rem;
+        font-size: 1rem;
     }
 
 </style>
